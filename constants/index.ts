@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   phoneFormatted: '0561345324',
   whatsapp: 'https://wa.me/966561345324',
   tel: 'tel:+966561345324',
-  email: 'info@cleanhouse-sa.com',
+  email: 'info@cleanhouseksa.com',
   address: 'الرياض، المملكة العربية السعودية',
   workingHours: '٧ أيام في الأسبوع – ٢٤ ساعة',
   established: '2015',

@@ -39,14 +39,14 @@ const keywords = [
 ].join(', ');
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cleanhouse-sa.com'),
+  metadataBase: new URL('https://cleanhouseksa.com'),
   title: {
     default: 'كلين هاوس | أفضل شركة تنظيف ومكافحة حشرات في السعودية',
     template: '%s | كلين هاوس للتنظيف الاحترافي',
   },
   description: SITE_CONFIG.description,
   keywords,
-  authors: [{ name: 'كلين هاوس', url: 'https://cleanhouse-sa.com' }],
+  authors: [{ name: 'كلين هاوس', url: 'https://cleanhouseksa.com' }],
   creator: 'كلين هاوس',
   publisher: 'كلين هاوس',
   robots: {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://cleanhouse-sa.com',
+    url: 'https://cleanhouseksa.com',
     siteName: 'كلين هاوس',
     title: 'كلين هاوس | أفضل شركة تنظيف احترافي في السعودية',
     description: SITE_CONFIG.description,
@@ -76,8 +76,8 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
   },
   alternates: {
-    canonical: 'https://cleanhouse-sa.com',
-    languages: { 'ar-SA': 'https://cleanhouse-sa.com' },
+    canonical: 'https://cleanhouseksa.com',
+    languages: { 'ar-SA': 'https://cleanhouseksa.com' },
   },
   verification: {
     google: 'your-google-verification-code',
@@ -89,13 +89,13 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://cleanhouse-sa.com',
+      '@id': 'https://cleanhouseksa.com',
       name: 'كلين هاوس للتنظيف الاحترافي',
       alternateName: 'Clean House Saudi Arabia',
       description: SITE_CONFIG.description,
-      url: 'https://cleanhouse-sa.com',
+      url: 'https://cleanhouseksa.com',
       telephone: '+966561345324',
-      email: 'info@cleanhouse-sa.com',
+      email: 'info@cleanhouseksa.com',
       foundingDate: '2015',
       areaServed: [
         { '@type': 'City', name: 'الرياض' },

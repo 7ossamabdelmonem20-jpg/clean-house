@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       areaServed: 'المملكة العربية السعودية',
     },
     serviceType: service.title,
-    url: `https://cleanhouse-sa.com/services/${service.slug}`,
+    url: `https://cleanhouseksa.com/services/${service.slug}`,
   };
 
   return {
@@ -35,11 +35,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: service.metaTitle,
       description: service.metaDesc,
-      url: `https://cleanhouse-sa.com/services/${service.slug}`,
+      url: `https://cleanhouseksa.com/services/${service.slug}`,
       images: [{ url: service.heroImage, width: 1200, height: 630, alt: service.title }],
     },
     alternates: {
-      canonical: `https://cleanhouse-sa.com/services/${service.slug}`,
+      canonical: `https://cleanhouseksa.com/services/${service.slug}`,
     },
     other: {
       'script:ld+json': JSON.stringify(jsonLd),
