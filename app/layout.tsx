@@ -1,86 +1,133 @@
-import type { Metadata } from 'next';
-import { Cairo, Tajawal } from 'next/font/google';
-import './globals.css';
-import { SITE_CONFIG } from '@/constants';
+import type { Metadata } from "next";
+import { Cairo, Tajawal } from "next/font/google";
+import "./globals.css";
+import { SITE_CONFIG } from "@/constants";
 
 const cairo = Cairo({
-  subsets: ['arabic', 'latin'],
-  variable: '--font-cairo',
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  display: 'swap',
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 const tajawal = Tajawal({
-  subsets: ['arabic'],
-  variable: '--font-tajawal',
-  weight: ['300', '400', '500', '700', '800'],
-  display: 'swap',
+  subsets: ["arabic"],
+  variable: "--font-tajawal",
+  weight: ["300", "400", "500", "700", "800"],
+  display: "swap",
 });
 
 const keywords = [
-  'تنظيف المكيفات', 'شركة تنظيف مكيفات', 'تنظيف مكيفات سبليت', 'تنظيف مكيفات شباك',
-  'تنظيف مكيفات مركزية', 'غسيل مكيفات', 'تعقيم المكيفات', 'تنظيف فلاتر المكيف',
-  'تنظيف الكنب والمجالس', 'شركة تنظيف كنب', 'تنظيف كنب بالبخار', 'غسيل كنب',
-  'تنظيف مجالس', 'تنظيف كنب جلد', 'تنظيف كنب قماش', 'إزالة بقع الكنب',
-  'تنظيف السجاد والموكيت', 'شركة تنظيف سجاد', 'غسيل سجاد', 'تنظيف سجاد بالبخار',
-  'غسيل موكيت', 'تنظيف سجاد منزلي', 'إزالة بقع السجاد', 'تعقيم السجاد',
-  'تنظيف الخزانات', 'شركة تنظيف خزانات', 'تنظيف خزانات مياه', 'غسيل خزانات المياه',
-  'تعقيم خزانات المياه', 'تنظيف خزانات أرضية', 'تنظيف خزانات علوية',
-  'شركة تنظيف في السعودية', 'شركة تنظيف بالرياض', 'شركة تنظيف بجدة',
-  'شركة تنظيف بالدمام', 'خدمات تنظيف احترافية', 'شركة تنظيف منازل',
-  'تنظيف بالبخار', 'تنظيف وتعقيم', 'أفضل خدمات التنظيف', 'شركة تنظيف معتمدة في السعودية',
-  'تنظيف شامل للمنازل', 'كلين هاوس', 'أفضل شركة تنظيف', 'أرخص شركة تنظيف',
-  'شركة تنظيف مع الضمان', 'تنظيف فوري', 'شركة تنظيف 24 ساعة',
-  'مكافحة الحشرات', 'شركة مكافحة حشرات', 'مكافحة الصراصير', 'مكافحة النمل',
-  'مكافحة البق', 'مكافحة القوارض', 'رش المبيدات', 'إبادة الحشرات',
-  'شركة مكافحة حشرات معتمدة', 'مكافحة حشرات بالسعودية', 'رش حشرات منازل',
-  'مكافحة حشرات بالرياض', 'مكافحة حشرات بجدة', 'مكافحة حشرات بالدمام',
-  'إبادة الحشرات المنزلية', 'رش مبيدات آمنة', 'مكافحة الفئران والقوارض',
-].join(', ');
+  "تنظيف المكيفات",
+  "شركة تنظيف مكيفات",
+  "تنظيف مكيفات سبليت",
+  "تنظيف مكيفات شباك",
+  "تنظيف مكيفات مركزية",
+  "غسيل مكيفات",
+  "تعقيم المكيفات",
+  "تنظيف فلاتر المكيف",
+  "تنظيف الكنب والمجالس",
+  "شركة تنظيف كنب",
+  "تنظيف كنب بالبخار",
+  "غسيل كنب",
+  "تنظيف مجالس",
+  "تنظيف كنب جلد",
+  "تنظيف كنب قماش",
+  "إزالة بقع الكنب",
+  "تنظيف السجاد والموكيت",
+  "شركة تنظيف سجاد",
+  "غسيل سجاد",
+  "تنظيف سجاد بالبخار",
+  "غسيل موكيت",
+  "تنظيف سجاد منزلي",
+  "إزالة بقع السجاد",
+  "تعقيم السجاد",
+  "تنظيف الخزانات",
+  "شركة تنظيف خزانات",
+  "تنظيف خزانات مياه",
+  "غسيل خزانات المياه",
+  "تعقيم خزانات المياه",
+  "تنظيف خزانات أرضية",
+  "تنظيف خزانات علوية",
+  "شركة تنظيف في السعودية",
+  "شركة تنظيف بالرياض",
+  "شركة تنظيف بجدة",
+  "شركة تنظيف بالدمام",
+  "خدمات تنظيف احترافية",
+  "شركة تنظيف منازل",
+  "تنظيف بالبخار",
+  "تنظيف وتعقيم",
+  "أفضل خدمات التنظيف",
+  "شركة تنظيف معتمدة في السعودية",
+  "تنظيف شامل للمنازل",
+  "كلين هاوس",
+  "أفضل شركة تنظيف",
+  "أرخص شركة تنظيف",
+  "شركة تنظيف مع الضمان",
+  "تنظيف فوري",
+  "شركة تنظيف 24 ساعة",
+  "مكافحة الحشرات",
+  "شركة مكافحة حشرات",
+  "مكافحة الصراصير",
+  "مكافحة النمل",
+  "مكافحة البق",
+  "مكافحة القوارض",
+  "رش المبيدات",
+  "إبادة الحشرات",
+  "شركة مكافحة حشرات معتمدة",
+  "مكافحة حشرات بالسعودية",
+  "رش حشرات منازل",
+  "مكافحة حشرات بالرياض",
+  "مكافحة حشرات بجدة",
+  "مكافحة حشرات بالدمام",
+  "إبادة الحشرات المنزلية",
+  "رش مبيدات آمنة",
+  "مكافحة الفئران والقوارض",
+].join(", ");
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.cleanhouseksa.com'),
+  metadataBase: new URL("https://www.cleanhouseksa.com"),
   title: {
-    default: 'كلين هاوس | أفضل شركة تنظيف ومكافحة حشرات في السعودية',
-    template: '%s | كلين هاوس للتنظيف الاحترافي',
+    default: "كلين هاوس | أفضل شركة تنظيف ومكافحة حشرات في السعودية",
+    template: "%s | كلين هاوس للتنظيف الاحترافي",
   },
   description: SITE_CONFIG.description,
   keywords,
-  authors: [{ name: 'كلين هاوس', url: 'https://www.cleanhouseksa.com' }],
-  creator: 'كلين هاوس',
-  publisher: 'كلين هاوس',
+  authors: [{ name: "كلين هاوس", url: "https://www.cleanhouseksa.com" }],
+  creator: "كلين هاوس",
+  publisher: "كلين هاوس",
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   openGraph: {
-    type: 'website',
-    locale: 'ar_SA',
-    url: 'https://www.cleanhouseksa.com',
-    siteName: 'كلين هاوس',
-    title: 'كلين هاوس | أفضل شركة تنظيف احترافي في السعودية',
+    type: "website",
+    locale: "ar_SA",
+    url: "https://www.cleanhouseksa.com",
+    siteName: "كلين هاوس",
+    title: "كلين هاوس | أفضل شركة تنظيف احترافي في السعودية",
     description: SITE_CONFIG.description,
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=1200&q=80',
+        url: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=1200&q=80",
         width: 1200,
         height: 630,
-        alt: 'كلين هاوس - شركة تنظيف احترافي في السعودية',
+        alt: "كلين هاوس - شركة تنظيف احترافي في السعودية",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'كلين هاوس | شركة تنظيف احترافي في السعودية',
+    card: "summary_large_image",
+    title: "كلين هاوس | شركة تنظيف احترافي في السعودية",
     description: SITE_CONFIG.description,
   },
   alternates: {
-    canonical: 'https://www.cleanhouseksa.com',
-    languages: { 'ar-SA': 'https://www.cleanhouseksa.com' },
+    canonical: "https://www.cleanhouseksa.com",
+    languages: { "ar-SA": "https://www.cleanhouseksa.com" },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: "your-google-verification-code",
   },
 };
 
@@ -128,103 +175,147 @@ const JSONLD_STRING = `{
         ]
       },
       "aggregateRating": {
-        "@type": "AggregateRating",
-        "itemReviewed": {
-          "@type": "LocalBusiness",
-          "@id": "https://www.cleanhouseksa.com",
-          "name": "كلين هاوس للتنظيف الاحترافي"
-        },
-        "ratingValue": "4.9",
-        "reviewCount": "1250",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
+  "@type": "AggregateRating",
+  "ratingValue": 4.9,
+  "reviewCount": 7,
+  "bestRating": 5,
+  "worstRating": 1
+},
       "review": [
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "أحمد المالكي" },
-          "reviewBody": "خدمة ممتازة جداً! قاموا بتنظيف مكيفات البيت كلها بطريقة احترافية. لاحظت فرقاً واضحاً في جودة الهواء والبرودة. أنصح بهم بشدة.",
-          "datePublished": "2024-03-15"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "نورة الشمري" },
-          "reviewBody": "تنظيف الكنب كان رائعاً! أزالوا بقعة قهوة كانت من شهر وما قدرت أزيلها. الكنب صار كأنه جديد. شكراً كلين هاوس.",
-          "datePublished": "2024-04-02"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "خالد العتيبي" },
-          "reviewBody": "تنظيف السجاد كان على أعلى مستوى. جاءت الفرقة في الوقت المحدد وأنجزوا العمل باحترافية تامة. سأتعامل معهم دائماً.",
-          "datePublished": "2024-05-10"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "سارة القحطاني" },
-          "reviewBody": "قاموا بتنظيف خزان المياه في وقت قصير جداً وبكفاءة عالية. أنا مطمئنة الآن على مياه الشرب لعائلتي. خدمة موثوقة ومعتمدة.",
-          "datePublished": "2024-06-18"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "فيصل الحربي" },
-          "reviewBody": "كنت أعاني من مشكلة صراصير من فترة طويلة وجربت أكثر من شركة بدون فائدة. كلين هاوس حلّت المشكلة من أول زيارة والحمد لله ما رجعت الحشرات.",
-          "datePublished": "2024-07-22"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "محمد الزهراني" },
-          "reviewBody": "أفضل شركة تنظيف تعاملت معها. الأسعار معقولة والخدمة ممتازة. تنظيف المكيفات كان شامل وسريع والفريق محترف جداً.",
-          "datePublished": "2024-08-05"
-        },
-        {
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.cleanhouseksa.com",
-            "name": "كلين هاوس للتنظيف الاحترافي"
-          },
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-          "author": { "@type": "Person", "name": "هند الدوسري" },
-          "reviewBody": "المجالس العربية بعد التنظيف بدت كأنها جديدة! الفريق كان محترماً وشغلهم نظيف. سأطلب منهم تنظيف السجاد أيضاً.",
-          "datePublished": "2024-09-12"
-        }
-      ],
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "أحمد المالكي"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "خدمة ممتازة جداً! قاموا بتنظيف مكيفات البيت كلها بطريقة احترافية. لاحظت فرقاً واضحاً في جودة الهواء والبرودة. أنصح بهم بشدة.",
+    "datePublished": "2024-03-15",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  },
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "نورة الشمري"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "تنظيف الكنب كان رائعاً! أزالوا بقعة قهوة كانت من شهر وما قدرت أزيلها. الكنب صار كأنه جديد.",
+    "datePublished": "2024-04-02",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  },
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "خالد العتيبي"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "تنظيف السجاد كان على أعلى مستوى. جاءت الفرقة في الوقت المحدد وأنجزوا العمل باحترافية تامة.",
+    "datePublished": "2024-05-10",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  },
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "سارة القحطاني"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "قاموا بتنظيف خزان المياه في وقت قصير جداً وبكفاءة عالية.",
+    "datePublished": "2024-06-18",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  },
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "فيصل الحربي"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "كلين هاوس حلّت مشكلة الحشرات من أول زيارة والحمد لله ما رجعت.",
+    "datePublished": "2024-07-22",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  },
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "محمد الزهراني"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "أفضل شركة تنظيف تعاملت معها. الأسعار معقولة والخدمة ممتازة.",
+    "datePublished": "2024-08-05",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  },
+  {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "هند الدوسري"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5
+    },
+    "reviewBody": "المجالس العربية بعد التنظيف بدت كأنها جديدة والفريق محترف جداً.",
+    "datePublished": "2024-09-12",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي"
+    }
+  }
+],
       "sameAs": ["https://wa.me/966561345324"]
     },
     {
@@ -260,16 +351,28 @@ const JSONLD_STRING = `{
   ]
 }`;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable}`}>
+    <html
+      lang="ar"
+      dir="rtl"
+      className={`${cairo.variable} ${tajawal.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSONLD_STRING }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="font-cairo antialiased" suppressHydrationWarning>
         {children}
