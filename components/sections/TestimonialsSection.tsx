@@ -5,13 +5,6 @@ import { Star, Quote } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { TESTIMONIALS } from '@/constants';
 
-// بيانات الشركة المُقيَّمة — مطلوبة في كل Review
-const BUSINESS_ITEM_REVIEWED = {
-  '@type': 'LocalBusiness',
-  name: 'كلين هاوس للتنظيف الاحترافي',
-  '@id': 'https://cleanhouse-sa.com',
-};
-
 export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="section-padding bg-white" aria-label="آراء العملاء">
@@ -21,34 +14,6 @@ export default function TestimonialsSection() {
           title="ماذا يقول"
           highlight="عملاؤنا؟"
           subtitle="آراء حقيقية من عملائنا المميزين في مختلف مدن المملكة العربية السعودية"
-        />
-
-        {/* Schema JSON-LD للتقييمات — أكثر موثوقية من microdata */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'ItemList',
-              itemListElement: TESTIMONIALS.map((t, i) => ({
-                '@type': 'ListItem',
-                position: i + 1,
-                item: {
-                  '@type': 'Review',
-                  itemReviewed: BUSINESS_ITEM_REVIEWED,
-                  reviewRating: {
-                    '@type': 'Rating',
-                    ratingValue: String(t.rating),
-                    bestRating: '5',
-                    worstRating: '1',
-                  },
-                  author: { '@type': 'Person', name: t.name },
-                  reviewBody: t.text,
-                  datePublished: '2024-01-01',
-                },
-              })),
-            }),
-          }}
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
