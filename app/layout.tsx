@@ -133,15 +133,7 @@ const jsonLd = {
         bestRating: '5',
       },
       sameAs: ['https://wa.me/966561345324'],
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: 'ما مناطق الخدمة؟', acceptedAnswer: { '@type': 'Answer', text: 'نغطي جميع مناطق المملكة: الرياض، جدة، الدمام، مكة المكرمة، المدينة المنورة وغيرها.' } },
-        { '@type': 'Question', name: 'هل المواد آمنة للأطفال؟', acceptedAnswer: { '@type': 'Answer', text: 'نعم، جميع موادنا معتمدة وآمنة على الأطفال والحيوانات الأليفة.' } },
-        { '@type': 'Question', name: 'هل يوجد ضمان على الخدمة؟', acceptedAnswer: { '@type': 'Answer', text: 'نعم، نضمن جودة خدماتنا بالكامل ونعيد الخدمة مجاناً عند عدم الرضا.' } },
-      ],
-    },
+    }
   ],
 };
 
