@@ -39,14 +39,14 @@ const keywords = [
 ].join(', ');
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cleanhouse-sa.com'),
+  metadataBase: new URL('https://www.cleanhouseksa.com'),
   title: {
     default: 'كلين هاوس | أفضل شركة تنظيف ومكافحة حشرات في السعودية',
     template: '%s | كلين هاوس للتنظيف الاحترافي',
   },
   description: SITE_CONFIG.description,
   keywords,
-  authors: [{ name: 'كلين هاوس', url: 'https://cleanhouse-sa.com' }],
+  authors: [{ name: 'كلين هاوس', url: 'https://www.cleanhouseksa.com' }],
   creator: 'كلين هاوس',
   publisher: 'كلين هاوس',
   robots: {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://cleanhouse-sa.com',
+    url: 'https://www.cleanhouseksa.com',
     siteName: 'كلين هاوس',
     title: 'كلين هاوس | أفضل شركة تنظيف احترافي في السعودية',
     description: SITE_CONFIG.description,
@@ -76,162 +76,189 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
   },
   alternates: {
-    canonical: 'https://cleanhouse-sa.com',
-    languages: { 'ar-SA': 'https://cleanhouse-sa.com' },
+    canonical: 'https://www.cleanhouseksa.com',
+    languages: { 'ar-SA': 'https://www.cleanhouseksa.com' },
   },
   verification: {
     google: 'your-google-verification-code',
   },
 };
 
-const businessRef = {
-  '@type': 'LocalBusiness',
-  '@id': 'https://cleanhouse-sa.com',
-  name: 'كلين هاوس للتنظيف الاحترافي',
-};
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
+// ⚠️ JSON-LD كـ string ثابت — يضمن ظهوره في الـ HTML مباشرة بدون اعتماد على JS
+const JSONLD_STRING = `{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      '@type': 'LocalBusiness',
-      '@id': 'https://cleanhouse-sa.com',
-      name: 'كلين هاوس للتنظيف الاحترافي',
-      alternateName: 'Clean House Saudi Arabia',
-      description: SITE_CONFIG.description,
-      url: 'https://cleanhouse-sa.com',
-      telephone: '+966561345324',
-      email: 'info@cleanhouse-sa.com',
-      foundingDate: '2015',
-      areaServed: [
-        { '@type': 'City', name: 'الرياض' },
-        { '@type': 'City', name: 'جدة' },
-        { '@type': 'City', name: 'الدمام' },
-        { '@type': 'City', name: 'مكة المكرمة' },
-        { '@type': 'Country', name: 'المملكة العربية السعودية' },
+      "@type": "LocalBusiness",
+      "@id": "https://www.cleanhouseksa.com",
+      "name": "كلين هاوس للتنظيف الاحترافي",
+      "alternateName": "Clean House Saudi Arabia",
+      "description": "شركة كلين هاوس – أفضل شركة تنظيف احترافي في السعودية. نقدم خدمات تنظيف المكيفات، تنظيف الكنب، تنظيف السجاد، تنظيف الخزانات، ومكافحة الحشرات بأعلى معايير الجودة والتعقيم.",
+      "url": "https://www.cleanhouseksa.com",
+      "telephone": "+966561345324",
+      "email": "info@cleanhouseksa.com",
+      "foundingDate": "2015",
+      "areaServed": [
+        { "@type": "City", "name": "الرياض" },
+        { "@type": "City", "name": "جدة" },
+        { "@type": "City", "name": "الدمام" },
+        { "@type": "City", "name": "مكة المكرمة" },
+        { "@type": "Country", "name": "المملكة العربية السعودية" }
       ],
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'SA',
-        addressRegion: 'الرياض',
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "SA",
+        "addressRegion": "الرياض"
       },
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-        opens: '00:00',
-        closes: '23:59',
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "00:00",
+        "closes": "23:59"
       },
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'خدمات التنظيف الاحترافية',
-        itemListElement: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تنظيف المكيفات', description: 'تنظيف وتعقيم جميع أنواع المكيفات بالبخار' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تنظيف الكنب والمجالس', description: 'غسيل وتعقيم الكنب والمجالس العربية' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تنظيف السجاد والموكيت', description: 'غسيل السجاد بالبخار وإزالة البقع' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تنظيف الخزانات', description: 'تنظيف وتعقيم خزانات المياه الأرضية والعلوية' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'مكافحة الحشرات', description: 'إبادة الحشرات والقوارض بمواد معتمدة وآمنة' } },
-        ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "خدمات التنظيف الاحترافية",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تنظيف المكيفات", "description": "تنظيف وتعقيم جميع أنواع المكيفات بالبخار" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تنظيف الكنب والمجالس", "description": "غسيل وتعقيم الكنب والمجالس العربية" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تنظيف السجاد والموكيت", "description": "غسيل السجاد بالبخار وإزالة البقع" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تنظيف الخزانات", "description": "تنظيف وتعقيم خزانات المياه الأرضية والعلوية" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "مكافحة الحشرات", "description": "إبادة الحشرات والقوارض بمواد معتمدة وآمنة" } }
+        ]
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        itemReviewed: businessRef,
-        ratingValue: '4.9',
-        reviewCount: '1250',
-        bestRating: '5',
-        worstRating: '1',
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "itemReviewed": {
+          "@type": "LocalBusiness",
+          "@id": "https://www.cleanhouseksa.com",
+          "name": "كلين هاوس للتنظيف الاحترافي"
+        },
+        "ratingValue": "4.9",
+        "reviewCount": "1250",
+        "bestRating": "5",
+        "worstRating": "1"
       },
-      review: [
+      "review": [
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'أحمد المالكي' },
-          reviewBody: 'خدمة ممتازة جداً! قاموا بتنظيف مكيفات البيت كلها بطريقة احترافية. لاحظت فرقاً واضحاً في جودة الهواء والبرودة. أنصح بهم بشدة.',
-          datePublished: '2024-03-15',
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "أحمد المالكي" },
+          "reviewBody": "خدمة ممتازة جداً! قاموا بتنظيف مكيفات البيت كلها بطريقة احترافية. لاحظت فرقاً واضحاً في جودة الهواء والبرودة. أنصح بهم بشدة.",
+          "datePublished": "2024-03-15"
         },
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'نورة الشمري' },
-          reviewBody: 'تنظيف الكنب كان رائعاً! أزالوا بقعة قهوة كانت من شهر وما قدرت أزيلها. الكنب صار كأنه جديد. شكراً كلين هاوس.',
-          datePublished: '2024-04-02',
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "نورة الشمري" },
+          "reviewBody": "تنظيف الكنب كان رائعاً! أزالوا بقعة قهوة كانت من شهر وما قدرت أزيلها. الكنب صار كأنه جديد. شكراً كلين هاوس.",
+          "datePublished": "2024-04-02"
         },
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'خالد العتيبي' },
-          reviewBody: 'تنظيف السجاد كان على أعلى مستوى. جاءت الفرقة في الوقت المحدد وأنجزوا العمل باحترافية تامة. سأتعامل معهم دائماً.',
-          datePublished: '2024-05-10',
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "خالد العتيبي" },
+          "reviewBody": "تنظيف السجاد كان على أعلى مستوى. جاءت الفرقة في الوقت المحدد وأنجزوا العمل باحترافية تامة. سأتعامل معهم دائماً.",
+          "datePublished": "2024-05-10"
         },
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'فيصل الحربي' },
-          reviewBody: 'كنت أعاني من مشكلة صراصير من فترة طويلة وجربت أكثر من شركة بدون فائدة. كلين هاوس حلّت المشكلة من أول زيارة والحمد لله ما رجعت الحشرات.',
-          datePublished: '2024-07-22',
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "سارة القحطاني" },
+          "reviewBody": "قاموا بتنظيف خزان المياه في وقت قصير جداً وبكفاءة عالية. أنا مطمئنة الآن على مياه الشرب لعائلتي. خدمة موثوقة ومعتمدة.",
+          "datePublished": "2024-06-18"
         },
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'سارة القحطاني' },
-          reviewBody: 'قاموا بتنظيف خزان المياه في وقت قصير جداً وبكفاءة عالية. أنا مطمئنة الآن على مياه الشرب لعائلتي. خدمة موثوقة ومعتمدة.',
-          datePublished: '2024-06-18',
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "فيصل الحربي" },
+          "reviewBody": "كنت أعاني من مشكلة صراصير من فترة طويلة وجربت أكثر من شركة بدون فائدة. كلين هاوس حلّت المشكلة من أول زيارة والحمد لله ما رجعت الحشرات.",
+          "datePublished": "2024-07-22"
         },
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'محمد الزهراني' },
-          reviewBody: 'أفضل شركة تنظيف تعاملت معها. الأسعار معقولة والخدمة ممتازة. تنظيف المكيفات كان شامل وسريع والفريق محترف جداً.',
-          datePublished: '2024-08-05',
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "محمد الزهراني" },
+          "reviewBody": "أفضل شركة تنظيف تعاملت معها. الأسعار معقولة والخدمة ممتازة. تنظيف المكيفات كان شامل وسريع والفريق محترف جداً.",
+          "datePublished": "2024-08-05"
         },
         {
-          '@type': 'Review',
-          itemReviewed: businessRef,
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
-          author: { '@type': 'Person', name: 'هند الدوسري' },
-          reviewBody: 'المجالس العربية بعد التنظيف بدت كأنها جديدة! الفريق كان محترماً وشغلهم نظيف. سأطلب منهم تنظيف السجاد أيضاً.',
-          datePublished: '2024-09-12',
-        },
+          "@type": "Review",
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "@id": "https://www.cleanhouseksa.com",
+            "name": "كلين هاوس للتنظيف الاحترافي"
+          },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "هند الدوسري" },
+          "reviewBody": "المجالس العربية بعد التنظيف بدت كأنها جديدة! الفريق كان محترماً وشغلهم نظيف. سأطلب منهم تنظيف السجاد أيضاً.",
+          "datePublished": "2024-09-12"
+        }
       ],
-      sameAs: ['https://wa.me/966561345324'],
+      "sameAs": ["https://wa.me/966561345324"]
     },
     {
-      '@type': 'FAQPage',
-      mainEntity: [
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          '@type': 'Question',
-          name: 'ما مناطق الخدمة التي تغطيها كلين هاوس؟',
-          acceptedAnswer: { '@type': 'Answer', text: 'نغطي جميع مناطق المملكة: الرياض، جدة، الدمام، مكة المكرمة، المدينة المنورة وغيرها.' },
+          "@type": "Question",
+          "name": "ما مناطق الخدمة التي تغطيها كلين هاوس؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "نغطي جميع مناطق المملكة: الرياض، جدة، الدمام، مكة المكرمة، المدينة المنورة وغيرها." }
         },
         {
-          '@type': 'Question',
-          name: 'هل المواد المستخدمة آمنة على الأطفال والحيوانات الأليفة؟',
-          acceptedAnswer: { '@type': 'Answer', text: 'نعم، جميع موادنا معتمدة وآمنة على الأطفال والحيوانات الأليفة وحاصلة على شهادات اعتماد سعودية.' },
+          "@type": "Question",
+          "name": "هل المواد المستخدمة آمنة على الأطفال والحيوانات الأليفة؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "نعم، جميع موادنا معتمدة وآمنة على الأطفال والحيوانات الأليفة وحاصلة على شهادات اعتماد سعودية." }
         },
         {
-          '@type': 'Question',
-          name: 'هل تقدمون ضماناً على الخدمة؟',
-          acceptedAnswer: { '@type': 'Answer', text: 'نعم، نضمن جودة خدماتنا بالكامل ونعيد الخدمة مجاناً عند عدم الرضا.' },
+          "@type": "Question",
+          "name": "هل تقدمون ضماناً على الخدمة؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "نعم، نضمن جودة خدماتنا بالكامل ونعيد الخدمة مجاناً عند عدم الرضا." }
         },
         {
-          '@type': 'Question',
-          name: 'كم يستغرق تنظيف المكيفات؟',
-          acceptedAnswer: { '@type': 'Answer', text: 'يستغرق تنظيف المكيف الواحد من ٣٠ دقيقة إلى ساعة حسب نوع المكيف وحجم التلوث.' },
+          "@type": "Question",
+          "name": "كم يستغرق تنظيف المكيفات؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "يستغرق تنظيف المكيف الواحد من ٣٠ دقيقة إلى ساعة حسب نوع المكيف وحجم التلوث." }
         },
         {
-          '@type': 'Question',
-          name: 'هل تعملون في أيام العطل؟',
-          acceptedAnswer: { '@type': 'Answer', text: 'نعم، كلين هاوس تعمل ٧ أيام في الأسبوع على مدار ٢٤ ساعة بما في ذلك العطل الرسمية.' },
-        },
-      ],
-    },
-  ],
-};
+          "@type": "Question",
+          "name": "هل تعملون في أيام العطل؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "نعم، كلين هاوس تعمل ٧ أيام في الأسبوع على مدار ٢٤ ساعة بما في ذلك العطل الرسمية." }
+        }
+      ]
+    }
+  ]
+}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -239,7 +266,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSONLD_STRING }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
