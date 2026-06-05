@@ -39,14 +39,14 @@ const keywords = [
 ].join(', ');
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cleanhouseksa.com'),
+  metadataBase: new URL('https://cleanhouse-sa.com'),
   title: {
     default: 'كلين هاوس | أفضل شركة تنظيف ومكافحة حشرات في السعودية',
     template: '%s | كلين هاوس للتنظيف الاحترافي',
   },
   description: SITE_CONFIG.description,
   keywords,
-  authors: [{ name: 'كلين هاوس', url: 'https://cleanhouseksa.com' }],
+  authors: [{ name: 'كلين هاوس', url: 'https://cleanhouse-sa.com' }],
   creator: 'كلين هاوس',
   publisher: 'كلين هاوس',
   robots: {
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://cleanhouseksa.com',
+    url: 'https://cleanhouse-sa.com',
     siteName: 'كلين هاوس',
     title: 'كلين هاوس | أفضل شركة تنظيف احترافي في السعودية',
     description: SITE_CONFIG.description,
     images: [
       {
-        url: '/images/heroimage/hero.jpg',
+        url: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=1200&q=80',
         width: 1200,
         height: 630,
         alt: 'كلين هاوس - شركة تنظيف احترافي في السعودية',
@@ -76,12 +76,18 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
   },
   alternates: {
-    canonical: 'https://cleanhouseksa.com',
-    languages: { 'ar-SA': 'https://cleanhouseksa.com' },
+    canonical: 'https://cleanhouse-sa.com',
+    languages: { 'ar-SA': 'https://cleanhouse-sa.com' },
   },
   verification: {
     google: 'your-google-verification-code',
   },
+};
+
+const businessRef = {
+  '@type': 'LocalBusiness',
+  '@id': 'https://cleanhouse-sa.com',
+  name: 'كلين هاوس للتنظيف الاحترافي',
 };
 
 const jsonLd = {
@@ -89,13 +95,13 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://cleanhouseksa.com',
+      '@id': 'https://cleanhouse-sa.com',
       name: 'كلين هاوس للتنظيف الاحترافي',
       alternateName: 'Clean House Saudi Arabia',
       description: SITE_CONFIG.description,
-      url: 'https://cleanhouseksa.com',
+      url: 'https://cleanhouse-sa.com',
       telephone: '+966561345324',
-      email: 'info@cleanhouseksa.com',
+      email: 'info@cleanhouse-sa.com',
       foundingDate: '2015',
       areaServed: [
         { '@type': 'City', name: 'الرياض' },
@@ -128,12 +134,86 @@ const jsonLd = {
       },
       aggregateRating: {
         '@type': 'AggregateRating',
+        itemReviewed: businessRef,
         ratingValue: '4.9',
         reviewCount: '1250',
         bestRating: '5',
+        worstRating: '1',
       },
+      review: [
+        {
+          '@type': 'Review',
+          itemReviewed: businessRef,
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+          author: { '@type': 'Person', name: 'أحمد المالكي' },
+          reviewBody: 'خدمة ممتازة جداً! قاموا بتنظيف مكيفات البيت كلها بطريقة احترافية. لاحظت فرقاً واضحاً في جودة الهواء والبرودة. أنصح بهم بشدة.',
+          datePublished: '2024-03-15',
+        },
+        {
+          '@type': 'Review',
+          itemReviewed: businessRef,
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+          author: { '@type': 'Person', name: 'نورة الشمري' },
+          reviewBody: 'تنظيف الكنب كان رائعاً! أزالوا بقعة قهوة كانت من شهر وما قدرت أزيلها. الكنب صار كأنه جديد. شكراً كلين هاوس.',
+          datePublished: '2024-04-02',
+        },
+        {
+          '@type': 'Review',
+          itemReviewed: businessRef,
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+          author: { '@type': 'Person', name: 'خالد العتيبي' },
+          reviewBody: 'تنظيف السجاد كان على أعلى مستوى. جاءت الفرقة في الوقت المحدد وأنجزوا العمل باحترافية تامة. سأتعامل معهم دائماً.',
+          datePublished: '2024-05-10',
+        },
+        {
+          '@type': 'Review',
+          itemReviewed: businessRef,
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+          author: { '@type': 'Person', name: 'سارة القحطاني' },
+          reviewBody: 'قاموا بتنظيف خزان المياه في وقت قصير جداً وبكفاءة عالية. أنا مطمئنة الآن على مياه الشرب لعائلتي. خدمة موثوقة ومعتمدة.',
+          datePublished: '2024-06-18',
+        },
+        {
+          '@type': 'Review',
+          itemReviewed: businessRef,
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+          author: { '@type': 'Person', name: 'فيصل الحربي' },
+          reviewBody: 'كنت أعاني من مشكلة صراصير من فترة طويلة وجربت أكثر من شركة بدون فائدة. كلين هاوس حلّت المشكلة من أول زيارة والحمد لله ما رجعت الحشرات.',
+          datePublished: '2024-07-22',
+        },
+      ],
       sameAs: ['https://wa.me/966561345324'],
-    }
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'ما مناطق الخدمة التي تغطيها كلين هاوس؟',
+          acceptedAnswer: { '@type': 'Answer', text: 'نغطي جميع مناطق المملكة: الرياض، جدة، الدمام، مكة المكرمة، المدينة المنورة وغيرها.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'هل المواد المستخدمة آمنة على الأطفال والحيوانات الأليفة؟',
+          acceptedAnswer: { '@type': 'Answer', text: 'نعم، جميع موادنا معتمدة وآمنة على الأطفال والحيوانات الأليفة وحاصلة على شهادات اعتماد سعودية.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'هل تقدمون ضماناً على الخدمة؟',
+          acceptedAnswer: { '@type': 'Answer', text: 'نعم، نضمن جودة خدماتنا بالكامل ونعيد الخدمة مجاناً عند عدم الرضا.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'كم يستغرق تنظيف المكيفات؟',
+          acceptedAnswer: { '@type': 'Answer', text: 'يستغرق تنظيف المكيف الواحد من ٣٠ دقيقة إلى ساعة حسب نوع المكيف وحجم التلوث.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'هل تعملون في أيام العطل؟',
+          acceptedAnswer: { '@type': 'Answer', text: 'نعم، كلين هاوس تعمل ٧ أيام في الأسبوع على مدار ٢٤ ساعة بما في ذلك العطل الرسمية.' },
+        },
+      ],
+    },
   ],
 };
 
