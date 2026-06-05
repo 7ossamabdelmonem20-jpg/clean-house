@@ -126,9 +126,9 @@ export const metadata: Metadata = {
     canonical: "https://www.cleanhouseksa.com",
     languages: { "ar-SA": "https://www.cleanhouseksa.com" },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // verification: {
+  //   google: "your-google-verification-code",
+  // },
 };
 
 // ⚠️ JSON-LD كـ string ثابت — يضمن ظهوره في الـ HTML مباشرة بدون اعتماد على JS

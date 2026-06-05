@@ -1,13 +1,17 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
-import SectionHeader from '@/components/ui/SectionHeader';
-import { TESTIMONIALS } from '@/constants';
+import { motion } from "framer-motion";
+import { Star, Quote } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { TESTIMONIALS } from "@/constants";
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="section-padding bg-white" aria-label="آراء العملاء">
+    <section
+      id="testimonials"
+      className="section-padding bg-white"
+      aria-label="آراء العملاء"
+    >
       <div className="container-custom">
         <SectionHeader
           badge="آراء عملائنا"
@@ -27,12 +31,25 @@ export default function TestimonialsSection() {
               className="card p-6 relative"
             >
               {/* Quote icon */}
-              <Quote size={32} className="text-blue-100 absolute top-6 left-6" aria-hidden />
+              <Quote
+                size={32}
+                className="text-blue-100 absolute top-6 left-6"
+                aria-hidden
+              />
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4" role="img" aria-label={`تقييم ${t.rating} من 5 نجوم`}>
+              <div
+                className="flex gap-1 mb-4"
+                role="img"
+                aria-label={`تقييم ${t.rating} من 5 نجوم`}
+              >
                 {Array.from({ length: t.rating }).map((_, s) => (
-                  <Star key={s} size={16} className="text-yellow-400" fill="currentColor" />
+                  <Star
+                    key={s}
+                    size={16}
+                    className="text-yellow-400"
+                    fill="currentColor"
+                  />
                 ))}
               </div>
 
@@ -70,12 +87,17 @@ export default function TestimonialsSection() {
           className="mt-12 text-center bg-gradient-to-r from-blue-50 to-cyan-50 rounded-3xl p-8 border border-blue-100"
         >
           <div className="flex justify-center gap-1 mb-3">
-            {[1,2,3,4,5].map((s) => (
-              <Star key={s} size={28} className="text-yellow-400" fill="currentColor" />
+            {[1, 2, 3, 4, 5].map((s) => (
+              <Star
+                key={s}
+                size={28}
+                className="text-yellow-400"
+                fill="currentColor"
+              />
             ))}
           </div>
           <div className="text-5xl font-black text-gray-900 mb-2">٤.٩</div>
-          <p className="text-gray-600">متوسط التقييم من أكثر من <strong>١,٢٥٠</strong> تقييم موثق</p>
+          <p className="text-gray-600">متوسط التقييم من عملائنا في مختلف مدن المملكة العربية السعودية</p>
         </motion.div>
       </div>
     </section>
