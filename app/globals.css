@@ -35,9 +35,8 @@ body {
   background: #ffffff;
   color: #1e293b;
   overflow-x: hidden;
-  /* safe area للأجهزة ذات الـ notch */
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Custom scrollbar */
