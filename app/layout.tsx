@@ -63,9 +63,9 @@ export const metadata: Metadata = {
     description: SITE_CONFIG.description,
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=1200&q=80',
+        url: 'https://cleanhouse-sa.com/images/logo.png',
         width: 1200,
-        height: 630,
+        height: 1200,
         alt: 'كلين هاوس - شركة تنظيف احترافي في السعودية',
       },
     ],
@@ -74,6 +74,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'كلين هاوس | شركة تنظيف احترافي في السعودية',
     description: SITE_CONFIG.description,
+    images: ['https://cleanhouse-sa.com/images/logo.png'],
+  },
+  icons: {
+    icon: '/images/logo.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
   },
   alternates: {
     canonical: 'https://cleanhouse-sa.com',
@@ -238,6 +244,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="icon" href="/images/logo.png" />
+        <link rel="shortcut icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="كلين هاوس | أفضل شركة تنظيف احترافي في السعودية" />
+        <meta property="og:description" content={SITE_CONFIG.description} />
+        <meta property="og:image" content="https://cleanhouse-sa.com/images/logo.png" />
+        <meta property="og:url" content="https://cleanhouse-sa.com" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="كلين هاوس | شركة تنظيف احترافي في السعودية" />
+        <meta property="twitter:description" content={SITE_CONFIG.description} />
+        <meta property="twitter:image" content="https://cleanhouse-sa.com/images/logo.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
