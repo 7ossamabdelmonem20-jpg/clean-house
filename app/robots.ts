@@ -7,29 +7,15 @@
 //   };
 // }
 
-
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://www.cleanhouseksa.com';
-
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
 
-        disallow: [
-          '/api/',
-          '/admin/',
-          '/dashboard/',
-          '/private/',
-          '/_next/',
-        ],
-      },
-    ],
-
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: 'https://www.cleanhouseksa.com/sitemap.xml',
   };
 }
