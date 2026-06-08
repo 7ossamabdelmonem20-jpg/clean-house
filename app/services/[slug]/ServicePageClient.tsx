@@ -3,11 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Phone, MessageCircle, ArrowRight, Star, ChevronLeft } from 'lucide-react';
+import { CheckCircle2, Phone, MessageCircle, ArrowRight, Star, ChevronLeft, ShieldCheck, MapPin } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingButtons from '@/components/ui/FloatingButtons';
 import { SITE_CONFIG, TESTIMONIALS } from '@/constants';
+import { ICON_MAP } from '@/utils/iconMap';
 
 interface Service {
   id: string;
@@ -79,7 +80,8 @@ export default function ServicePageClient({
               transition={{ duration: 0.7 }}
             >
               <span className={`inline-flex items-center gap-2 text-sm font-bold py-1.5 px-4 rounded-full mb-4 bg-white/15 backdrop-blur-sm border border-white/20 text-white`}>
-                <span>{service.icon}</span> خدمة احترافية معتمدة
+                {(() => { const HeroIcon = ICON_MAP[service.icon]; return HeroIcon ? <HeroIcon size={15} strokeWidth={1.75} /> : null; })()}
+                خدمة احترافية معتمدة
               </span>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
@@ -93,7 +95,7 @@ export default function ServicePageClient({
                 <a href={SITE_CONFIG.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
                   <MessageCircle size={20} /> احجز الخدمة الآن
                 </a>
-                <a href={SITE_CONFIG.tel} className="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold py-3 px-7 rounded-full hover:bg-white/25 transition-all inline-flex items-center gap-2">
+                <a href={SITE_CONFIG.tel} className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/25 transition-all">
                   <Phone size={18} /> {SITE_CONFIG.phoneFormatted}
                 </a>
               </div>
@@ -115,21 +117,21 @@ export default function ServicePageClient({
                 <span className={`inline-block text-sm font-bold py-1.5 px-4 rounded-full mb-4 ${service.bgColor} ${service.textColor}`}>
                   {service.title}
                 </span>
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-5">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-5">
                   لماذا تختار كلين هاوس لـ{service.title}؟
                 </h2>
-                <p className="text-gray-600 leading-relaxed text-base mb-4">
+                <p className="text-slate-600 leading-relaxed text-base mb-4">
                   {service.description}
                 </p>
-                <p className="text-gray-600 leading-relaxed text-base mb-8">
+                <p className="text-slate-600 leading-relaxed text-base mb-8">
                   {service.longDescription}
                 </p>
 
                 <ul className="space-y-3 mb-8">
                   {service.features.map((feat) => (
                     <li key={feat} className="flex items-center gap-3">
-                      <CheckCircle2 size={20} className="text-green-500 flex-shrink-0" />
-                      <span className="text-gray-800 font-medium">{feat}</span>
+                      <CheckCircle2 size={18} className="text-teal-500 flex-shrink-0" />
+                      <span className="text-slate-800 font-medium text-sm">{feat}</span>
                     </li>
                   ))}
                 </ul>
@@ -162,12 +164,14 @@ export default function ServicePageClient({
                   />
                 </div>
                 {/* بطاقة ضمان */}
-                <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-4 border border-gray-100">
+                <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-card-hover p-4 border border-slate-100">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center text-xl">🛡️</div>
+                    <div className="w-11 h-11 bg-teal-50 rounded-xl flex items-center justify-center">
+                  <ShieldCheck size={22} className="text-teal-500" strokeWidth={1.75} />
+                </div>
                     <div>
-                      <p className="font-black text-gray-900 text-sm">ضمان الخدمة</p>
-                      <p className="text-gray-500 text-xs">نعيد الخدمة مجاناً</p>
+                      <p className="font-black text-slate-900 text-sm">ضمان الخدمة</p>
+                      <p className="text-slate-400 text-xs">نعيد الخدمة مجاناً</p>
                     </div>
                   </div>
                 </div>
@@ -183,10 +187,10 @@ export default function ServicePageClient({
               <span className={`inline-block text-sm font-bold py-1.5 px-4 rounded-full mb-4 bg-white ${service.textColor}`}>
                 كيف نعمل؟
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900">
                 خطوات {service.title}
               </h2>
-              <p className="text-gray-600 mt-3 max-w-xl mx-auto">
+              <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
                 عملية منظمة ومدروسة لضمان أفضل نتيجة في أسرع وقت
               </p>
             </div>
@@ -204,11 +208,11 @@ export default function ServicePageClient({
                   transition={{ delay: i * 0.1 }}
                   className="text-center relative"
                 >
-                  <div className={`w-20 h-20 mx-auto rounded-2xl bg-white shadow-md flex items-center justify-center mb-4 border-2 ${service.borderColor} relative z-10`}>
-                    <span className={`text-2xl font-black ${service.textColor}`}>{i + 1}</span>
+                  <div className={`w-16 h-16 mx-auto rounded-2xl bg-white shadow-card flex items-center justify-center mb-4 border ${service.borderColor} relative z-10`}>
+                    <span className={`text-xl font-black ${service.textColor}`}>{i + 1}</span>
                   </div>
-                  <h3 className="font-black text-gray-900 mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="font-black text-slate-900 mb-1.5 text-sm">{step.title}</h3>
+                  <p className="text-slate-500 text-xs leading-relaxed">{step.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -232,21 +236,21 @@ export default function ServicePageClient({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="card p-6"
+                  className="bg-[#F8FAFC] hover:bg-white border border-slate-100 hover:shadow-card rounded-2xl p-5 transition-all duration-200"
                 >
                   <div className="flex gap-1 mb-3">
                     {Array.from({ length: t.rating }).map((_, s) => (
-                      <Star key={s} size={16} className="text-yellow-400" fill="currentColor" />
+                      <Star key={s} size={14} className="text-amber-400" fill="currentColor" />
                     ))}
                   </div>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">"{t.text}"</p>
-                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-                    <div className="w-9 h-9 bg-gradient-to-br from-blue-600 to-blue-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  <p className="text-slate-700 text-sm leading-relaxed mb-4">"{t.text}"</p>
+                  <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
+                    <div className="w-9 h-9 bg-gradient-to-br from-primary-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       {t.avatar}
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900 text-sm">{t.name}</p>
-                      <p className="text-gray-400 text-xs">📍 {t.city}</p>
+                      <p className="font-bold text-slate-900 text-sm">{t.name}</p>
+                      <p className="text-slate-400 text-xs flex items-center gap-1"><MapPin size={11} strokeWidth={2} />{t.city}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -256,62 +260,66 @@ export default function ServicePageClient({
         </section>
 
         {/* ── CTA Banner ── */}
-        <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-900 relative overflow-hidden">
-          <div className="absolute inset-0 pattern-bg opacity-10" />
+        <section className="py-16 bg-navy-700 relative overflow-hidden">
+          <div className="absolute inset-0 pattern-bg opacity-15" />
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 to-teal-400" />
           <div className="container-custom relative text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
               احجز {service.title} الآن
             </h2>
-            <p className="text-blue-200 text-lg mb-8">
+            <p className="text-primary-200 mb-8">
               تواصل معنا واحصل على عرض سعر مجاني فوري
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <a href={SITE_CONFIG.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
-                <MessageCircle size={20} /> تواصل عبر واتساب
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a href={SITE_CONFIG.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+                <MessageCircle size={19} /> تواصل عبر واتساب
               </a>
-              <a href={SITE_CONFIG.tel} className="bg-white text-blue-800 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors inline-flex items-center gap-2 text-base">
-                <Phone size={18} /> اتصل الآن
+              <a href={SITE_CONFIG.tel} className="flex items-center gap-2 bg-white text-navy-700 font-bold py-3 px-7 rounded-xl hover:bg-slate-50 transition-colors">
+                <Phone size={17} /> اتصل الآن
               </a>
             </div>
           </div>
         </section>
 
         {/* ── خدمات أخرى ── */}
-        <section className="section-padding bg-gray-50">
+        <section className="section-padding bg-[#F8FAFC]">
           <div className="container-custom">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900">
+              <h2 className="text-2xl md:text-3xl font-black text-slate-900">
                 خدماتنا الأخرى
               </h2>
-              <p className="text-gray-500 mt-2">اكتشف باقي خدمات التنظيف الاحترافية</p>
+              <p className="text-slate-500 mt-2 text-sm">اكتشف باقي خدمات التنظيف الاحترافية</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {otherServices.map((s, i) => (
+            <div className="grid md:grid-cols-3 gap-5">
+              {otherServices.slice(0, 3).map((s, i) => {
+                const OtherIcon = ICON_MAP[s.icon];
+                return (
                 <motion.div
                   key={s.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.08 }}
                 >
                   <Link
                     href={`/services/${s.slug}`}
-                    className="card p-6 block group hover:border-blue-200 border border-transparent"
+                    className="bg-white rounded-2xl p-6 block group shadow-card hover:shadow-card-hover border border-slate-100 hover:border-primary-100 transition-all duration-300 hover:-translate-y-1"
                   >
-                    <div className={`w-14 h-14 ${s.bgColor} rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform`}>
-                      {s.icon}
+                    <div className={`w-12 h-12 ${s.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform border ${s.borderColor}`}>
+                      {OtherIcon && <OtherIcon size={22} className={s.textColor} strokeWidth={1.75} />}
                     </div>
-                    <h3 className="font-black text-gray-900 text-lg mb-2 group-hover:text-blue-700 transition-colors">
+                    <h3 className="font-black text-slate-900 text-base mb-1.5 group-hover:text-primary-600 transition-colors">
                       {s.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4">{s.shortDesc}</p>
-                    <span className={`inline-flex items-center gap-1 text-sm font-bold ${s.textColor}`}>
-                      اعرف أكثر <ArrowRight size={14} />
+                    <p className="text-slate-500 text-sm mb-4 leading-relaxed">{s.shortDesc}</p>
+                    <span className={`inline-flex items-center gap-1 text-xs font-bold ${s.textColor}`}>
+                      اعرف المزيد <ArrowRight size={12} />
                     </span>
                   </Link>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

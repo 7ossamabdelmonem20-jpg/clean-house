@@ -7,7 +7,7 @@ import { SITE_CONFIG } from '@/constants';
 export default function FloatingButtons() {
   return (
     <div
-      className="fixed bottom-5 right-4 z-50 flex items-center gap-3 sm:gap-4"
+      className="fixed bottom-5 right-4 z-50 flex items-center gap-3"
       role="complementary"
       aria-label="أزرار التواصل السريع"
     >
@@ -16,7 +16,7 @@ export default function FloatingButtons() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="تواصل عبر واتساب"
-        className="group inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-500 text-white shadow-2xl shadow-slate-950/20 transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+        className="inline-flex items-center justify-center w-13 h-13 w-[52px] h-[52px] rounded-2xl bg-accent-500 text-white shadow-glow-green transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-300"
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 12 }}
@@ -24,13 +24,13 @@ export default function FloatingButtons() {
         transition={{ duration: 0.4, delay: 0.1 }}
       >
         <span className="sr-only">واتساب</span>
-        <MessageCircle size={24} className="relative z-10" />
+        <MessageCircle size={22} />
       </motion.a>
 
       <motion.a
         href={SITE_CONFIG.tel}
         aria-label="اتصل بنا"
-        className="group inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-blue-700 text-white shadow-2xl shadow-slate-950/20 transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
+        className="inline-flex items-center justify-center w-[52px] h-[52px] rounded-2xl bg-primary-500 text-white shadow-glow transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-300"
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 12 }}
@@ -38,7 +38,7 @@ export default function FloatingButtons() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <span className="sr-only">اتصل بنا</span>
-        <Phone size={24} className="relative z-10" />
+        <Phone size={22} />
       </motion.a>
     </div>
   );

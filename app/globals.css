@@ -1,22 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design System Tokens ── */
 :root {
-  --font-cairo: 'Cairo', sans-serif;
+  --font-cairo:   'Cairo',   sans-serif;
   --font-tajawal: 'Tajawal', sans-serif;
-  --primary: #1d4ed8;
-  --primary-light: #3b82f6;
-  --accent: #22c55e;
-  --accent-light: #4ade80;
-  --gold: #d4a843;
+  --font-inter:   'Inter',   sans-serif;
+
+  /* Primary: #0A84FF */
+  --primary:        #0A84FF;
+  --primary-dark:   #0068cc;
+  --primary-light:  #66b1ff;
+
+  /* Teal Accent: #14B8A6 */
+  --teal:           #14B8A6;
+  --teal-dark:      #0d9488;
+
+  /* Green: #22C55E */
+  --green:          #22C55E;
+
+  /* Navy: #1E2937 */
+  --navy:           #1E2937;
+
+  /* Neutrals */
+  --bg-soft:        #F8FAFC;
+  --border:         #E2E8F0;
+  --text-dark:      #0F172A;
+  --text-gray:      #64748B;
 }
 
-*,
-*::before,
-*::after {
+/* ── Reset ── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -37,114 +54,142 @@ body {
   direction: rtl;
   text-align: right;
   background: #ffffff;
-  color: #1e293b;
+  color: var(--text-dark);
   overflow-x: hidden;
   min-width: 0;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  line-height: 1.6;
 }
 
-#__next {
-  min-width: 0;
-}
+#__next { min-width: 0; }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg-soft); }
+::-webkit-scrollbar-thumb  { background: var(--primary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
 
-/* Selection color */
-::selection { background: #bfdbfe; color: #1e3a8a; }
+/* ── Selection ── */
+::selection { background: #cce5ff; color: var(--navy); }
 
+/* ── Component Utilities ── */
 @layer components {
+
+  /* Buttons – Design System: rounded-xl, not pill */
   .btn-primary {
-    @apply bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 inline-flex items-center gap-2;
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold
+           py-3 px-7 rounded-xl transition-all duration-200
+           shadow-md hover:shadow-lg hover:-translate-y-0.5
+           inline-flex items-center gap-2;
   }
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-blue-700 font-bold py-3 px-8 rounded-full border-2 border-blue-700 transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2;
+    @apply bg-white hover:bg-accent-50 text-accent-600 font-semibold
+           py-3 px-7 rounded-xl border-2 border-accent-500
+           transition-all duration-200 hover:-translate-y-0.5
+           inline-flex items-center gap-2;
+  }
+  .btn-ghost {
+    @apply text-primary-500 hover:text-primary-600 font-semibold
+           py-3 px-6 rounded-xl transition-colors duration-200
+           inline-flex items-center gap-2 hover:bg-primary-50;
   }
   .btn-whatsapp {
-    @apply bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 inline-flex items-center gap-2;
+    @apply bg-accent-500 hover:bg-accent-600 text-white font-semibold
+           py-3 px-7 rounded-xl transition-all duration-200
+           shadow-md hover:shadow-glow-green hover:-translate-y-0.5
+           inline-flex items-center gap-2;
   }
+  .btn-teal {
+    @apply bg-teal-500 hover:bg-teal-600 text-white font-semibold
+           py-3 px-7 rounded-xl transition-all duration-200
+           shadow-md hover:-translate-y-0.5
+           inline-flex items-center gap-2;
+  }
+
+  /* Section / Layout */
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 leading-tight;
+    @apply text-3xl md:text-4xl lg:text-[2.75rem] font-black text-slate-900 leading-tight;
   }
   .section-subtitle {
-    @apply text-lg md:text-xl text-gray-600 mt-4 leading-relaxed;
-  }
-  .card {
-    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1;
+    @apply text-base md:text-lg text-slate-500 mt-4 leading-relaxed;
   }
   .section-padding {
-    @apply py-12 md:py-16 lg:py-20;
+    @apply py-16 md:py-20 lg:py-24;
   }
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
     min-width: 0;
   }
+
+  /* Card */
+  .card {
+    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover
+           transition-all duration-300 hover:-translate-y-1;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-2 font-semibold text-sm
+           py-1.5 px-4 rounded-full;
+  }
+  .badge-primary {
+    @apply badge bg-primary-50 text-primary-600;
+  }
+  .badge-teal {
+    @apply badge bg-teal-50 text-teal-600;
+  }
+  .badge-green {
+    @apply badge bg-accent-50 text-accent-600;
+  }
 }
 
-/* Gradient text */
+/* ── Gradient Text ── */
 .gradient-text {
-  background: linear-gradient(135deg, #1d4ed8, #22c55e);
+  background: linear-gradient(135deg, var(--primary), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-green {
+  background: linear-gradient(135deg, var(--teal), var(--green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glass morphism */
+/* ── Glass morphism ── */
 .glass {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255,255,255,0.35);
 }
 
-/* Floating animation */
+/* ── Animations ── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  50%       { transform: translateY(-14px); }
 }
-
 .animate-float { animation: float 5s ease-in-out infinite; }
 
-/* Pulse ring */
-@keyframes pulse-ring {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
+/* ── Hero – image + overlay ── */
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(10, 132, 255, 0.65) 60%,
+    rgba(20, 184, 166, 0.45) 100%
+  );
 }
 
-.pulse-ring::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: inherit;
-  animation: pulse-ring 2s ease-out infinite;
-  opacity: 0.4;
-}
-
-/* Pattern background */
+/* ── Dot pattern ── */
 .pattern-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.1) 1px, transparent 0);
-  background-size: 40px 40px;
+  background-image: radial-gradient(circle at 1px 1px, rgba(10,132,255,0.08) 1px, transparent 0);
+  background-size: 36px 36px;
 }
 
-/* Diagonal section */
-.diagonal-top {
-  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
-}
-.diagonal-bottom {
-  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-}
-
-/* Hero gradient */
-.hero-gradient {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #1d4ed8 70%, #0369a1 100%);
-}
-
-/* Wave divider */
+/* ── Section divider wave ── */
 .wave-bottom {
   position: absolute;
   bottom: -1px;
@@ -152,8 +197,12 @@ body {
   width: 100%;
 }
 
-/* Number counter */
+/* ── Stats counter card ── */
 .counter-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
 }
+
+/* ── Diagonal clip ── */
+.diagonal-top    { clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); }
+.diagonal-bottom { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { Cairo, Tajawal } from 'next/font/google';
+import { Cairo, Tajawal, Inter } from 'next/font/google';
 import './globals.css';
-import { SITE_CONFIG } from '@/constants';
+import { SITE_CONFIG, SEO_KEYWORDS } from '@/constants';
 
 const cairo = Cairo({
   subsets: ['arabic', 'latin'],
@@ -17,38 +17,28 @@ const tajawal = Tajawal({
   display: 'swap',
 });
 
-const keywords = [
-  'تنظيف المكيفات', 'شركة تنظيف مكيفات', 'تنظيف مكيفات سبليت', 'تنظيف مكيفات شباك',
-  'تنظيف مكيفات مركزية', 'غسيل مكيفات', 'تعقيم المكيفات', 'تنظيف فلاتر المكيف',
-  'تنظيف الكنب والمجالس', 'شركة تنظيف كنب', 'تنظيف كنب بالبخار', 'غسيل كنب',
-  'تنظيف مجالس', 'تنظيف كنب جلد', 'تنظيف كنب قماش', 'إزالة بقع الكنب',
-  'تنظيف السجاد والموكيت', 'شركة تنظيف سجاد', 'غسيل سجاد', 'تنظيف سجاد بالبخار',
-  'غسيل موكيت', 'تنظيف سجاد منزلي', 'إزالة بقع السجاد', 'تعقيم السجاد',
-  'تنظيف الخزانات', 'شركة تنظيف خزانات', 'تنظيف خزانات مياه', 'غسيل خزانات المياه',
-  'تعقيم خزانات المياه', 'تنظيف خزانات أرضية', 'تنظيف خزانات علوية',
-  'شركة تنظيف في السعودية', 'شركة تنظيف بالرياض', 'شركة تنظيف بجدة',
-  'شركة تنظيف بالدمام', 'خدمات تنظيف احترافية', 'شركة تنظيف منازل',
-  'تنظيف بالبخار', 'تنظيف وتعقيم', 'أفضل خدمات التنظيف', 'شركة تنظيف معتمدة في السعودية',
-  'تنظيف شامل للمنازل', 'كلين هاوس', 'أفضل شركة تنظيف', 'أرخص شركة تنظيف',
-  'شركة تنظيف مع الضمان', 'تنظيف فوري', 'شركة تنظيف 24 ساعة',
-  'مكافحة الحشرات', 'شركة مكافحة حشرات', 'مكافحة الصراصير', 'مكافحة النمل',
-  'مكافحة البق', 'مكافحة القوارض', 'رش المبيدات', 'إبادة الحشرات',
-  'شركة مكافحة حشرات معتمدة', 'مكافحة حشرات بالسعودية', 'رش حشرات منازل',
-  'مكافحة حشرات بالرياض', 'مكافحة حشرات بجدة', 'مكافحة حشرات بالدمام',
-  'إبادة الحشرات المنزلية', 'رش مبيدات آمنة', 'مكافحة الفئران والقوارض',
-].join(', ');
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+});
+
+const siteUrl = SITE_CONFIG.url;
+const ogImage = `${siteUrl}/images/logo.png`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cleanhouse-sa.com'),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'كلين هاوس | أفضل شركة تنظيف ومكافحة حشرات في السعودية',
-    template: '%s | كلين هاوس للتنظيف الاحترافي',
+    default: SITE_CONFIG.seoTitle,
+    template: '%s | Clean House KSA كلين هاوس',
   },
-  description: SITE_CONFIG.description,
-  keywords,
-  authors: [{ name: 'كلين هاوس', url: 'https://cleanhouse-sa.com' }],
-  creator: 'كلين هاوس',
-  publisher: 'كلين هاوس',
+  description: SITE_CONFIG.seoDescription,
+  keywords: SEO_KEYWORDS,
+  applicationName: 'Clean House KSA',
+  authors: [{ name: 'كلين هاوس Clean House KSA', url: siteUrl }],
+  creator: 'Clean House KSA | كلين هاوس',
+  publisher: 'cleanhouseksa',
   robots: {
     index: true,
     follow: true,
@@ -57,58 +47,71 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://cleanhouse-sa.com',
-    siteName: 'كلين هاوس',
-    title: 'كلين هاوس | أفضل شركة تنظيف احترافي في السعودية',
-    description: SITE_CONFIG.description,
+    url: siteUrl,
+    siteName: 'كلين هاوس Clean House KSA',
+    title: SITE_CONFIG.seoTitle,
+    description: SITE_CONFIG.seoDescription,
     images: [
       {
-        url: 'https://cleanhouse-sa.com/images/logo.png',
+        url: ogImage,
         width: 1200,
-        height: 1200,
-        alt: 'كلين هاوس - شركة تنظيف احترافي في السعودية',
+        height: 630,
+        alt: 'Clean House KSA كلين هاوس - شركة تنظيف احترافي في السعودية',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'كلين هاوس | شركة تنظيف احترافي في السعودية',
-    description: SITE_CONFIG.description,
-    images: ['https://cleanhouse-sa.com/images/logo.png'],
+    title: SITE_CONFIG.seoTitle,
+    description: SITE_CONFIG.seoDescription,
+    images: [ogImage],
   },
   icons: {
     icon: '/images/logo.png',
     shortcut: '/images/logo.png',
     apple: '/images/logo.png',
   },
+  manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://cleanhouse-sa.com',
-    languages: { 'ar-SA': 'https://cleanhouse-sa.com' },
+    canonical: siteUrl,
+    languages: { 'ar-SA': siteUrl },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
 };
 
 const businessRef = {
   '@type': 'LocalBusiness',
-  '@id': 'https://cleanhouse-sa.com',
-  name: 'كلين هاوس للتنظيف الاحترافي',
+  '@id': `${siteUrl}/#business`,
+  name: 'كلين هاوس Clean House KSA',
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: 'كلين هاوس Clean House KSA',
+      alternateName: SITE_CONFIG.alternateNames,
+      description: SITE_CONFIG.seoDescription,
+      inLanguage: 'ar-SA',
+      publisher: { '@id': `${siteUrl}/#business` },
+    },
+    {
       '@type': 'LocalBusiness',
-      '@id': 'https://cleanhouse-sa.com',
-      name: 'كلين هاوس للتنظيف الاحترافي',
-      alternateName: 'Clean House Saudi Arabia',
-      description: SITE_CONFIG.description,
-      url: 'https://cleanhouse-sa.com',
-      telephone: '+966561345324',
-      email: 'info@cleanhouse-sa.com',
-      foundingDate: '2015',
+      '@id': `${siteUrl}/#business`,
+      name: 'كلين هاوس Clean House KSA',
+      alternateName: SITE_CONFIG.alternateNames,
+      description: SITE_CONFIG.seoDescription,
+      url: siteUrl,
+      telephone: SITE_CONFIG.phone,
+      email: SITE_CONFIG.email,
+      foundingDate: SITE_CONFIG.established,
+      image: ogImage,
+      logo: ogImage,
       areaServed: [
         { '@type': 'City', name: 'الرياض' },
         { '@type': 'City', name: 'جدة' },
@@ -123,7 +126,7 @@ const jsonLd = {
       },
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+        dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         opens: '00:00',
         closes: '23:59',
       },
@@ -204,14 +207,14 @@ const jsonLd = {
           datePublished: '2024-09-12',
         },
       ],
-      sameAs: ['https://wa.me/966561345324'],
+      sameAs: [SITE_CONFIG.whatsapp],
     },
     {
       '@type': 'FAQPage',
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'ما مناطق الخدمة التي تغطيها كلين هاوس؟',
+          name: 'ما مناطق الخدمة التي تغطيها كلين هاوس Clean House KSA؟',
           acceptedAnswer: { '@type': 'Answer', text: 'نغطي جميع مناطق المملكة: الرياض، جدة، الدمام، مكة المكرمة، المدينة المنورة وغيرها.' },
         },
         {
@@ -232,7 +235,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'هل تعملون في أيام العطل؟',
-          acceptedAnswer: { '@type': 'Answer', text: 'نعم، كلين هاوس تعمل ٧ أيام في الأسبوع على مدار ٢٤ ساعة بما في ذلك العطل الرسمية.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'نعم، كلين هاوس Clean House KSA تعمل ٧ أيام في الأسبوع على مدار ٢٤ ساعة بما في ذلك العطل الرسمية.' },
         },
       ],
     },
@@ -241,27 +244,15 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable}`}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable} ${inter.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="icon" href="/images/logo.png" />
-        <link rel="shortcut icon" href="/images/logo.png" />
-        <link rel="apple-touch-icon" href="/images/logo.png" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="كلين هاوس | أفضل شركة تنظيف احترافي في السعودية" />
-        <meta property="og:description" content={SITE_CONFIG.description} />
-        <meta property="og:image" content="https://cleanhouse-sa.com/images/logo.png" />
-        <meta property="og:url" content="https://cleanhouse-sa.com" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="كلين هاوس | شركة تنظيف احترافي في السعودية" />
-        <meta property="twitter:description" content={SITE_CONFIG.description} />
-        <meta property="twitter:image" content="https://cleanhouse-sa.com/images/logo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-cairo antialiased" suppressHydrationWarning>
         {children}

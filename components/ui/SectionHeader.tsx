@@ -9,6 +9,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   center?: boolean;
   light?: boolean;
+  badgeVariant?: 'primary' | 'teal' | 'green';
 }
 
 export default function SectionHeader({
@@ -18,29 +19,37 @@ export default function SectionHeader({
   subtitle,
   center = true,
   light = false,
+  badgeVariant = 'teal',
 }: SectionHeaderProps) {
+  const badgeClass =
+    badgeVariant === 'green'
+      ? 'bg-accent-50 text-accent-700 border border-accent-200'
+      : badgeVariant === 'primary'
+      ? 'bg-primary-50 text-primary-600 border border-primary-100'
+      : 'bg-teal-50 text-teal-600 border border-teal-100';
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.55 }}
       className={`${center ? 'text-center' : ''} mb-12 md:mb-16`}
     >
       {badge && (
-        <span className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 font-bold text-sm py-1.5 px-5 rounded-full mb-4">
-          <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+        <span className={`inline-flex items-center gap-2 font-semibold text-sm py-1.5 px-4 rounded-full mb-5 ${badgeClass}`}>
+          <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${badgeVariant === 'teal' ? 'bg-teal-500' : badgeVariant === 'green' ? 'bg-accent-500' : 'bg-primary-500'}`} />
           {badge}
         </span>
       )}
-      <h2 className={`section-title ${light ? 'text-white' : 'text-gray-900'}`}>
+      <h2 className={`section-title ${light ? 'text-white' : 'text-slate-900'}`}>
         {title}
         {highlight && (
           <span className="gradient-text"> {highlight}</span>
         )}
       </h2>
       {subtitle && (
-        <p className={`section-subtitle max-w-2xl ${center ? 'mx-auto' : ''} ${light ? 'text-blue-100' : 'text-gray-600'}`}>
+        <p className={`section-subtitle max-w-2xl ${center ? 'mx-auto' : ''} ${light ? 'text-primary-100' : 'text-slate-500'}`}>
           {subtitle}
         </p>
       )}

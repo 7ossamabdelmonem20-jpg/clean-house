@@ -1,14 +1,22 @@
+export const SITE_URL = 'https://cleanhouseksa.com';
+
 export const SITE_CONFIG = {
   name: 'كلين هاوس',
   nameEn: 'Clean House',
+  brandSlug: 'cleanhouseksa',
+  url: SITE_URL,
   tagline: 'خبراء التنظيف الاحترافي في المملكة العربية السعودية',
   description:
-    'شركة كلين هاوس – أفضل شركة تنظيف احترافي في السعودية. نقدم خدمات تنظيف المكيفات، تنظيف الكنب، تنظيف السجاد، تنظيف الخزانات، ومكافحة الحشرات بأعلى معايير الجودة والتعقيم.',
+    'كلين هاوس Clean House KSA – أفضل شركة تنظيف احترافي في السعودية. cleanhouseksa تقدم خدمات تنظيف المكيفات، الكنب، السجاد، الخزانات، ومكافحة الحشرات بأعلى معايير الجودة والتعقيم في الرياض وجدة والدمام.',
+  seoTitle: 'كلين هاوس Clean House KSA | أفضل شركة تنظيف في السعودية',
+  seoDescription:
+    'Clean House KSA (كلين هاوس) – شركة تنظيف احترافية في المملكة العربية السعودية. cleanhouseksa تقدم تنظيف مكيفات، كنب، سجاد، خزانات ومكافحة حشرات. احجز الآن في الرياض وجدة والدمام.',
   phone: '+966561345324',
   phoneFormatted: '0561345324',
   whatsapp: 'https://wa.me/966561345324',
   tel: 'tel:+966561345324',
   email: 'info@cleanhouseksa.com',
+  alternateNames: ['Clean House', 'Clean House KSA', 'clean house ksa', 'cleanhouse', 'cleanhouseksa', 'clean house saudi arabia'],
   address: 'الرياض، المملكة العربية السعودية',
   workingHours: '٧ أيام في الأسبوع – ٢٤ ساعة',
   established: '2015',
@@ -21,11 +29,11 @@ export const NAV_LINKS = [
     label: 'الخدمات',
     href: '/#services',
     dropdown: [
-      { label: 'تنظيف المكيفات', href: '/services/ac', icon: '❄️' },
-      { label: 'تنظيف السجاد', href: '/services/carpet', icon: '🏠' },
-      { label: 'تنظيف الكنب', href: '/services/sofa', icon: '🛋️' },
-      { label: 'تنظيف الخزانات', href: '/services/tank', icon: '💧' },
-      { label: 'مكافحة الحشرات', href: '/services/pest', icon: '🐛' },
+      { label: 'تنظيف المكيفات', href: '/services/ac', icon: 'AirVent' },
+      { label: 'تنظيف السجاد', href: '/services/carpet', icon: 'Layers' },
+      { label: 'تنظيف الكنب', href: '/services/sofa', icon: 'Sofa' },
+      { label: 'تنظيف الخزانات', href: '/services/tank', icon: 'Droplets' },
+      { label: 'مكافحة الحشرات', href: '/services/pest', icon: 'Bug' },
     ],
   },
   { label: 'آراء العملاء', href: '/#testimonials' },
@@ -33,15 +41,37 @@ export const NAV_LINKS = [
   { label: 'تواصل معنا', href: '/#contact' },
 ];
 
+export const SEO_KEYWORDS = [
+  'clean house',
+  'clean house ksa',
+  'cleanhouse',
+  'cleanhouseksa',
+  'clean house saudi arabia',
+  'clean',
+  'كلين هاوس',
+  'شركة تنظيف في السعودية',
+  'شركة تنظيف بالرياض',
+  'شركة تنظيف بجدة',
+  'شركة تنظيف بالدمام',
+  'تنظيف المكيفات',
+  'تنظيف الكنب',
+  'تنظيف السجاد',
+  'تنظيف الخزانات',
+  'مكافحة الحشرات',
+  'خدمات تنظيف احترافية',
+  'تنظيف بالبخار',
+  'أفضل شركة تنظيف',
+].join(', ');
+
 export const SERVICES = [
   {
     id: 'ac',
     slug: 'ac',
-    icon: '❄️',
+    icon: 'AirVent',
     title: 'تنظيف المكيفات',
     shortDesc: 'تنظيف وتعقيم مكيفات سبليت وشباك ومركزية',
-    metaTitle: 'تنظيف المكيفات الاحترافي | كلين هاوس السعودية',
-    metaDesc: 'خدمة تنظيف مكيفات احترافية في السعودية. تنظيف سبليت وشباك ومركزية بالبخار مع ضمان. اتصل الآن للحجز الفوري.',
+    metaTitle: 'تنظيف المكيفات | Clean House KSA كلين هاوس',
+    metaDesc: 'Clean House KSA – خدمة تنظيف مكيفات احترافية في السعودية. cleanhouseksa تنظف سبليت وشباك ومركزية بالبخار مع ضمان. احجز الآن.',
     description:
       'نقدم خدمة تنظيف مكيفات احترافية شاملة لجميع أنواع المكيفات – سبليت، شباك، ومركزية. نستخدم أحدث تقنيات التنظيف بالبخار مع تعقيم كامل للفلاتر والوحدات الداخلية والخارجية.',
     longDescription:
@@ -71,11 +101,11 @@ export const SERVICES = [
   {
     id: 'carpet',
     slug: 'carpet',
-    icon: '🏠',
+    icon: 'Layers',
     title: 'تنظيف السجاد والموكيت',
     shortDesc: 'غسيل وتعقيم السجاد والموكيت بتقنيات حديثة',
-    metaTitle: 'تنظيف السجاد والموكيت الاحترافي | كلين هاوس السعودية',
-    metaDesc: 'خدمة غسيل وتنظيف سجاد احترافية في السعودية. إزالة البقع بالبخار مع تعقيم كامل. خدمة في المنزل بدون نقل.',
+    metaTitle: 'تنظيف السجاد | Clean House KSA كلين هاوس',
+    metaDesc: 'Clean House KSA – غسيل وتنظيف سجاد احترافي في السعودية. cleanhouseksa تزيل البقع بالبخار مع تعقيم كامل في منزلك.',
     description:
       'خدمة تنظيف سجاد احترافية تشمل إزالة البقع الصعبة والأوساخ المتراكمة باستخدام أجهزة تنظيف بالبخار الحديثة. نخدم المنازل والفلل والمساجد والشركات في جميع أنحاء المملكة.',
     longDescription:
@@ -106,11 +136,11 @@ export const SERVICES = [
   {
     id: 'sofa',
     slug: 'sofa',
-    icon: '🛋️',
+    icon: 'Sofa',
     title: 'تنظيف الكنب والمجالس',
     shortDesc: 'تنظيف كنب جلد وقماش وتنظيف المجالس العربية',
-    metaTitle: 'تنظيف الكنب والمجالس العربية | كلين هاوس السعودية',
-    metaDesc: 'خدمة تنظيف كنب جلد وقماش ومجالس عربية في السعودية. إزالة البقع والروائح بالبخار. نتيجة مضمونة أو نعيد الخدمة.',
+    metaTitle: 'تنظيف الكنب | Clean House KSA كلين هاوس',
+    metaDesc: 'Clean House KSA – تنظيف كنب جلد وقماش ومجالس عربية في السعودية. cleanhouseksa تزيل البقع والروائح بالبخار مع ضمان.',
     description:
       'نتخصص في تنظيف الكنب والمجالس العربية بأعلى مستوى من الاحترافية. نعالج كنب الجلد والقماش بمواد آمنة ومعتمدة مع إزالة تامة للبقع والروائح وتعقيم كامل للأثاث.',
     longDescription:
@@ -141,11 +171,11 @@ export const SERVICES = [
   {
     id: 'tank',
     slug: 'tank',
-    icon: '💧',
+    icon: 'Droplets',
     title: 'تنظيف الخزانات',
     shortDesc: 'تنظيف وتعقيم خزانات المياه الأرضية والعلوية',
-    metaTitle: 'تنظيف وتعقيم خزانات المياه | كلين هاوس السعودية',
-    metaDesc: 'خدمة تنظيف خزانات مياه احترافية في السعودية. تعقيم خزانات أرضية وعلوية بمواد معتمدة. ضمان نظافة مياه الشرب.',
+    metaTitle: 'تنظيف الخزانات | Clean House KSA كلين هاوس',
+    metaDesc: 'Clean House KSA – تنظيف وتعقيم خزانات مياه في السعودية. cleanhouseksa تعقم الخزانات الأرضية والعلوية بمواد معتمدة.',
     description:
       'نقدم خدمة تنظيف خزانات المياه المنزلية والتجارية بطرق معتمدة وآمنة. نشمل تنظيف الخزانات الأرضية والعلوية مع تعقيم شامل لضمان مياه شرب آمنة ونظيفة لأسرتك.',
     longDescription:
@@ -176,11 +206,11 @@ export const SERVICES = [
   {
     id: 'pest',
     slug: 'pest',
-    icon: '🐛',
+    icon: 'Bug',
     title: 'مكافحة الحشرات',
     shortDesc: 'إبادة الحشرات والقوارض بمواد معتمدة وآمنة على الأسرة',
-    metaTitle: 'مكافحة الحشرات الاحترافية | كلين هاوس السعودية',
-    metaDesc: 'شركة مكافحة حشرات معتمدة في السعودية. إبادة الصراصير والنمل والبق والقوارض بمواد آمنة وضمان. اتصل الآن للحجز الفوري.',
+    metaTitle: 'مكافحة الحشرات | Clean House KSA كلين هاوس',
+    metaDesc: 'Clean House KSA – مكافحة حشرات معتمدة في السعودية. cleanhouseksa تبيد الصراصير والنمل والقوارض بمواد آمنة مع ضمان.',
     description:
       'نقدم خدمة مكافحة حشرات احترافية ومعتمدة لإبادة جميع أنواع الحشرات والقوارض. نستخدم مبيدات حشرية مرخصة وآمنة تماماً على الإنسان والحيوانات الأليفة مع ضمان عدم عودة الحشرات.',
     longDescription:
@@ -211,10 +241,10 @@ export const SERVICES = [
 ];
 
 export const STATS = [
-  { value: 15000, label: 'عميل سعيد', suffix: '+', icon: '😊' },
-  { value: 9, label: 'سنوات خبرة', suffix: '+', icon: '🏆' },
-  { value: 50000, label: 'خدمة منجزة', suffix: '+', icon: '✅' },
-  { value: 98, label: 'نسبة رضا العملاء', suffix: '%', icon: '⭐' },
+  { value: 15000, label: 'عميل سعيد',         suffix: '+', icon: 'Smile' },
+  { value: 9,     label: 'سنوات خبرة',         suffix: '+', icon: 'Trophy' },
+  { value: 50000, label: 'خدمة منجزة',         suffix: '+', icon: 'CheckCircle2' },
+  { value: 98,    label: 'نسبة رضا العملاء',   suffix: '%', icon: 'Star' },
 ];
 
 export const TESTIMONIALS = [
@@ -336,32 +366,32 @@ export const FAQ_ITEMS = [
 
 export const WHY_CHOOSE_US = [
   {
-    icon: '🏆',
+    icon: 'Trophy',
     title: 'خبرة ٩ سنوات',
     desc: 'نمتلك خبرة واسعة في مجال التنظيف الاحترافي تمتد لأكثر من ٩ سنوات في المملكة العربية السعودية',
   },
   {
-    icon: '✅',
+    icon: 'BadgeCheck',
     title: 'معتمدون رسمياً',
     desc: 'شركة تنظيف معتمدة ومرخصة رسمياً من الجهات السعودية المختصة بأعلى معايير الجودة',
   },
   {
-    icon: '💰',
+    icon: 'Wallet',
     title: 'أسعار منافسة',
     desc: 'نقدم أفضل الأسعار في السوق مع الحفاظ على أعلى معايير الجودة وبدون رسوم خفية',
   },
   {
-    icon: '⚡',
+    icon: 'Zap',
     title: 'خدمة سريعة',
     desc: 'فريق متاح ٢٤/٧ للاستجابة الفورية لطلباتكم. نصل إليكم في أسرع وقت ممكن',
   },
   {
-    icon: '🔬',
+    icon: 'FlaskConical',
     title: 'تقنيات حديثة',
     desc: 'نستخدم أحدث معدات وتقنيات التنظيف بالبخار ومواد معتمدة وآمنة للأسرة والبيئة',
   },
   {
-    icon: '🛡️',
+    icon: 'ShieldCheck',
     title: 'ضمان الخدمة',
     desc: 'نضمن جودة خدماتنا بالكامل. غير راضٍ؟ نعيد الخدمة مجاناً حتى تكون سعيداً تماماً',
   },
