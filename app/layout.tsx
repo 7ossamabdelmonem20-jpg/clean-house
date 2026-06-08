@@ -81,12 +81,6 @@ export const metadata: Metadata = {
   }),
 };
 
-const businessRef = {
-  '@type': 'LocalBusiness',
-  '@id': `${siteUrl}/#business`,
-  name: 'كلين هاوس Clean House KSA',
-};
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -143,8 +137,8 @@ const jsonLd = {
       },
       aggregateRating: {
         '@type': 'AggregateRating',
-        itemReviewed: businessRef,
         ratingValue: '4.9',
+        ratingCount: '1250',
         reviewCount: '1250',
         bestRating: '5',
         worstRating: '1',
@@ -152,7 +146,6 @@ const jsonLd = {
       review: [
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'أحمد المالكي' },
           reviewBody: 'خدمة ممتازة جداً! قاموا بتنظيف مكيفات البيت كلها بطريقة احترافية. لاحظت فرقاً واضحاً في جودة الهواء والبرودة. أنصح بهم بشدة.',
@@ -160,7 +153,6 @@ const jsonLd = {
         },
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'نورة الشمري' },
           reviewBody: 'تنظيف الكنب كان رائعاً! أزالوا بقعة قهوة كانت من شهر وما قدرت أزيلها. الكنب صار كأنه جديد. شكراً كلين هاوس.',
@@ -168,7 +160,6 @@ const jsonLd = {
         },
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'خالد العتيبي' },
           reviewBody: 'تنظيف السجاد كان على أعلى مستوى. جاءت الفرقة في الوقت المحدد وأنجزوا العمل باحترافية تامة. سأتعامل معهم دائماً.',
@@ -176,7 +167,6 @@ const jsonLd = {
         },
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'فيصل الحربي' },
           reviewBody: 'كنت أعاني من مشكلة صراصير من فترة طويلة وجربت أكثر من شركة بدون فائدة. كلين هاوس حلّت المشكلة من أول زيارة والحمد لله ما رجعت الحشرات.',
@@ -184,7 +174,6 @@ const jsonLd = {
         },
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'سارة القحطاني' },
           reviewBody: 'قاموا بتنظيف خزان المياه في وقت قصير جداً وبكفاءة عالية. أنا مطمئنة الآن على مياه الشرب لعائلتي. خدمة موثوقة ومعتمدة.',
@@ -192,7 +181,6 @@ const jsonLd = {
         },
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'محمد الزهراني' },
           reviewBody: 'أفضل شركة تنظيف تعاملت معها. الأسعار معقولة والخدمة ممتازة. تنظيف المكيفات كان شامل وسريع والفريق محترف جداً.',
@@ -200,7 +188,6 @@ const jsonLd = {
         },
         {
           '@type': 'Review',
-          itemReviewed: businessRef,
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: 'هند الدوسري' },
           reviewBody: 'المجالس العربية بعد التنظيف بدت كأنها جديدة! الفريق كان محترماً وشغلهم نظيف. سأطلب منهم تنظيف السجاد أيضاً.',
