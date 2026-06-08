@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     shortcut: '/images/logo.png',
     apple: '/images/logo.png',
   },
-  manifest: '/manifest.json',
+  manifest: '/manifest.webmanifest',
   alternates: {
     canonical: siteUrl,
     languages: { 'ar-SA': siteUrl },
