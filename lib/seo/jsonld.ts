@@ -32,19 +32,35 @@ export function serviceSchema(opts: {
     name: opts.name,
     description: opts.description,
     url: opts.url,
-    provider: { '@id': businessId },
+    provider: {
+      '@id': businessId,
+    },
     areaServed: opts.areaServed || 'المملكة العربية السعودية',
     serviceType: opts.name,
   };
 }
 
-export function faqSchema(items: { question: string; answer: string }[]) {
+export function faqSchema(
+  items: { question: string; answer: string }[] = []
+) {
+  const validItems = items.filter(
+    (item) =>
+      item &&
+      typeof item.question === 'string' &&
+      item.question.trim().length > 0 &&
+      typeof item.answer === 'string' &&
+      item.answer.trim().length > 0
+  );
+
   return {
     '@type': 'FAQPage',
-    mainEntity: items.map((item) => ({
+    mainEntity: validItems.map((item) => ({
       '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      name: item.question.trim(),
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer.trim(),
+      },
     })),
   };
 }
@@ -64,10 +80,21 @@ export function localBusinessCitySchema(city: City) {
       addressRegion: city.region,
       addressCountry: 'SA',
     },
-    areaServed: { '@type': 'City', name: city.name },
+    areaServed: {
+      '@type': 'City',
+      name: city.name,
+    },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      dayOfWeek: [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ],
       opens: '00:00',
       closes: '23:59',
     },
@@ -98,7 +125,10 @@ export function articleSchema(opts: {
     publisher: {
       '@type': 'Organization',
       name: 'كلين هاوس Clean House KSA',
-      logo: { '@type': 'ImageObject', url: `${siteUrl}/images/logo.png` },
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/images/logo.png`,
+      },
     },
     inLanguage: 'ar-SA',
   };
@@ -107,6 +137,6 @@ export function articleSchema(opts: {
 export function buildJsonLd(...schemas: Record<string, unknown>[]) {
   return {
     '@context': 'https://schema.org',
-    '@graph': schemas,
+    '@graph': schemas.filter(Boolean),
   };
 }
