@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
-import { SITE_CONFIG, SERVICES, CITIES } from '@/constants';
+import { SITE_CONFIG, SERVICES } from '@/constants';
+import { SEO_CITIES } from '@/constants/cities';
 import { ICON_MAP } from '@/utils/iconMap';
 
 export default function Footer() {
@@ -89,16 +90,21 @@ export default function Footer() {
           {/* Cities */}
           <div>
             <h3 className="font-bold text-base mb-5 text-white">مناطق الخدمة</h3>
-            <div className="flex flex-wrap gap-2">
-              {CITIES.map((city) => (
-                <span
-                  key={city}
-                  className="bg-white/5 border border-white/10 text-slate-400 text-xs py-1 px-3 rounded-lg hover:border-teal-500/40 hover:text-teal-400 cursor-default transition-colors"
-                >
-                  {city}
-                </span>
+            <ul className="space-y-2 mb-4">
+              {SEO_CITIES.slice(0, 6).map((city) => (
+                <li key={city.slug}>
+                  <Link
+                    href={`/cities/${city.slug}`}
+                    className="text-slate-400 hover:text-teal-400 transition-colors text-sm"
+                  >
+                    شركة تنظيف في {city.name}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
+            <Link href="/cities" className="text-teal-400 hover:text-teal-300 text-xs font-semibold">
+              جميع المدن ←
+            </Link>
           </div>
 
           {/* Contact */}

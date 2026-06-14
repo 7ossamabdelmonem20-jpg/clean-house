@@ -37,6 +37,8 @@ export const NAV_LINKS = [
     ],
   },
   { label: 'آراء العملاء', href: '/#testimonials' },
+  { label: 'المدونة', href: '/blog' },
+  { label: 'مناطق الخدمة', href: '/cities' },
   { label: 'الأسئلة الشائعة', href: '/#faq' },
   { label: 'تواصل معنا', href: '/#contact' },
 ];
@@ -44,8 +46,6 @@ export const NAV_LINKS = [
 export const SEO_KEYWORDS = [
   'clean house',
   'clean house ksa',
-  'cleanhouse',
-  'cleanhouseksa',
   'clean house saudi arabia',
   'clean',
   'كلين هاوس',

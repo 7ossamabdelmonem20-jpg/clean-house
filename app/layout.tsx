@@ -95,6 +95,18 @@ const jsonLd = {
       publisher: { '@id': `${siteUrl}/#business` },
     },
     {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: 'كلين هاوس Clean House KSA',
+      alternateName: SITE_CONFIG.alternateNames,
+      url: siteUrl,
+      logo: { '@type': 'ImageObject', url: ogImage },
+      email: SITE_CONFIG.email,
+      telephone: SITE_CONFIG.phone,
+      foundingDate: SITE_CONFIG.established,
+      sameAs: [SITE_CONFIG.whatsapp],
+    },
+    {
       '@type': 'LocalBusiness',
       '@id': `${siteUrl}/#business`,
       name: 'كلين هاوس Clean House KSA',
@@ -106,6 +118,7 @@ const jsonLd = {
       foundingDate: SITE_CONFIG.established,
       image: ogImage,
       logo: ogImage,
+      parentOrganization: { '@id': `${siteUrl}/#organization` },
       areaServed: [
         { '@type': 'City', name: 'الرياض' },
         { '@type': 'City', name: 'جدة' },
