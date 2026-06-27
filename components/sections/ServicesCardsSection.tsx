@@ -53,7 +53,7 @@ export default function ServicesCardsSection() {
                   <div className="relative h-36 overflow-hidden mx-5 rounded-xl">
                     <Image
                       src={service.image}
-                      alt={`${service.title} - كلين هاوس السعودية`}
+                      alt={`${service.title} - كلين هاوس في المملكة العربية السعودية`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, 20vw"

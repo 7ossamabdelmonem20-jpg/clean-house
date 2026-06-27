@@ -10,7 +10,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildPageMetadata({
   title: 'المدونة | نصائح التنظيف | كلين هاوس Clean House KSA',
-  description: 'مدونة كلين هاوس — نصائح ودلائل احترافية لتنظيف المكيفات والكنب والسجاد والخزانات ومكافحة الحشرات في السعودية.',
+  description: 'مدونة كلين هاوس — نصائح ودلائل احترافية لتنظيف المكيفات والكنب والسجاد والخزانات ومكافحة الحشرات في المملكة العربية السعودية.',
   path: '/blog',
   keywords: 'نصائح تنظيف, تنظيف المكيفات, تنظيف الكنب, تنظيف السجاد, مكافحة حشرات',
 });
@@ -24,7 +24,7 @@ export default function BlogIndexPage() {
           <Breadcrumbs items={[{ label: 'الرئيسية', href: '/' }, { label: 'المدونة' }]} />
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">مدونة كلين هاوس</h1>
           <p className="text-slate-600 mb-10 max-w-2xl leading-relaxed">
-            نصائح ودلائل احترافية من خبراء التنظيف في السعودية — كل ما تحتاج معرفته عن تنظيف منزلك.
+            نصائح ودلائل احترافية من خبراء التنظيف في المملكة العربية السعودية — كل ما تحتاج معرفته عن تنظيف منزلك.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BLOG_POSTS.map((post) => (

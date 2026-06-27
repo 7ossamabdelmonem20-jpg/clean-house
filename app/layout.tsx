@@ -56,7 +56,7 @@ export const metadata: Metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: 'Clean House KSA كلين هاوس - شركة تنظيف احترافي في السعودية',
+        alt: 'Clean House KSA كلين هاوس - شركة تنظيف احترافي في المملكة العربية السعودية',
       },
     ],
   },

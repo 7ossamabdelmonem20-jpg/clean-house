@@ -55,7 +55,7 @@ export default function ServicePageClient({
           <div className="absolute inset-0">
             <Image
               src={service.heroImage}
-              alt={`${service.title} - كلين هاوس السعودية`}
+              alt={`${service.title} - كلين هاوس في المملكة العربية السعودية`}
               fill
               className="object-cover"
               priority

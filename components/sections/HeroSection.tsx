@@ -32,7 +32,7 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/images/heroimage/hero.jpg"
-          alt="فريق كلين هاوس Clean House KSA للتنظيف الاحترافي في السعودية"
+          alt="فريق كلين هاوس Clean House KSA للتنظيف الاحترافي في المملكة العربية السعودية"
           fill
           className="object-cover object-center"
           priority
@@ -76,7 +76,7 @@ export default function HeroSection() {
               Clean House
             </span>
             <br />
-            أفضل شركة تنظيف في السعودية
+            أفضل شركة تنظيف في المملكة العربية السعودية
           </motion.h1>
 
           {/* Sub */}

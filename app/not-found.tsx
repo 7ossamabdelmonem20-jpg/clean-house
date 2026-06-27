@@ -4,7 +4,7 @@ import { SITE_CONFIG } from '@/constants';
 
 export const metadata: Metadata = {
   title: 'الصفحة غير موجودة',
-  description: `الصفحة المطلوبة غير موجودة. عد إلى ${SITE_CONFIG.name} Clean House KSA للتنظيف الاحترافي في السعودية.`,
+  description: `الصفحة المطلوبة غير موجودة. عد إلى ${SITE_CONFIG.name} Clean House KSA للتنظيف الاحترافي في المملكة العربية السعودية.`,
   robots: { index: false, follow: true },
 };
 

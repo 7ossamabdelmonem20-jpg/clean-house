@@ -70,6 +70,7 @@ export function localBusinessCitySchema(city: City) {
     '@type': 'LocalBusiness',
     '@id': `${siteUrl}/cities/${city.slug}#business`,
     name: `كلين هاوس Clean House KSA - ${city.name}`,
+    description: city.metaDescription,
     url: `${siteUrl}/cities/${city.slug}`,
     telephone: SITE_CONFIG.phone,
     email: SITE_CONFIG.email,

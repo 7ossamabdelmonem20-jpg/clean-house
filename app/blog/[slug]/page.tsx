@@ -106,7 +106,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           <SeoCtaBanner
             title="تحتاج خدمة تنظيف احترافية؟"
-            subtitle="كلين هاوس تقدم جميع خدمات التنظيف في السعودية — احجز الآن"
+            subtitle="كلين هاوس تقدم جميع خدمات التنظيف في المملكة العربية السعودية — احجز الآن"
           />
 
           {/* Related posts */}

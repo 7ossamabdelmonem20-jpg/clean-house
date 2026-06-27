@@ -11,7 +11,7 @@ export const metadata = buildPageMetadata({
   title: 'مناطق الخدمة | كلين هاوس Clean House KSA',
   description: 'كلين هاوس تقدم خدمات تنظيف في الرياض وجدة والدمام ومكة والمدينة والخبر والطائف والقصيم والأحساء. احجز الآن.',
   path: '/cities',
-  keywords: 'شركة تنظيف السعودية, تنظيف الرياض, تنظيف جدة, تنظيف الدمام',
+  keywords: 'شركة تنظيف المملكة العربية السعودية, تنظيف الرياض, تنظيف جدة, تنظيف الدمام',
 });
 
 export default function CitiesIndexPage() {

@@ -18,6 +18,14 @@ export function getCityServiceMetaDescription(service: Service, city: City): str
   return templates[service.slug] || `${service.title} في ${city.name} — كلين هاوس Clean House KSA. احجز الآن.`;
 }
 
+/** مصدر واحد لـ Meta Tags و Schema — يضمن تطابق 100% */
+export function getServiceCityPageSeo(service: Service, city: City) {
+  return {
+    title: getCityServiceMetaTitle(service, city),
+    description: getCityServiceMetaDescription(service, city),
+  };
+}
+
 export function getCityServiceH1(service: Service, city: City): string {
   return `${service.title} في ${city.name}`;
 }

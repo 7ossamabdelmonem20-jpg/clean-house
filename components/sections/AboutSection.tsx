@@ -31,7 +31,7 @@ export default function AboutSection() {
             <div className="relative rounded-2xl overflow-hidden shadow-card-hover aspect-[4/3]">
               <Image
                 src="/images/heroimage/hero.jpg"
-                alt="فريق شركة كلين هاوس Clean House KSA للتنظيف الاحترافي في السعودية"
+                alt="فريق شركة كلين هاوس Clean House KSA للتنظيف الاحترافي في المملكة العربية السعودية"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

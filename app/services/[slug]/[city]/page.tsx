@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingButtons from '@/components/ui/FloatingButtons';
-import JsonLd from '@/components/seo/JsonLd';
+import ServiceCityLocalBusinessSchema from '@/components/seo/ServiceCityLocalBusinessSchema';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import InternalLinks from '@/components/seo/InternalLinks';
 import SeoFaqSection from '@/components/seo/SeoFaqSection';
@@ -12,14 +12,13 @@ import { SERVICES } from '@/constants';
 import { getCityBySlug, getAllCitySlugs } from '@/constants/cities';
 import { SITE_CONFIG } from '@/constants';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { buildJsonLd, breadcrumbSchema, serviceSchema, faqSchema } from '@/lib/seo/jsonld';
 import {
-  getCityServiceMetaTitle,
   getCityServiceMetaDescription,
   getCityServiceH1,
   getCityServiceIntro,
   getCityServiceLongContent,
   getCityServiceFaqs,
+  getServiceCityPageSeo,
 } from '@/lib/seo/content';
 import { ICON_MAP } from '@/utils/iconMap';
 import { Phone, MessageCircle, CheckCircle2, MapPin } from 'lucide-react';
@@ -39,9 +38,11 @@ export async function generateMetadata({ params }: { params: { slug: string; cit
   const city = getCityBySlug(params.city);
   if (!service || !city) return {};
 
+  const seo = getServiceCityPageSeo(service, city);
+
   return buildPageMetadata({
-    title: getCityServiceMetaTitle(service, city),
-    description: getCityServiceMetaDescription(service, city),
+    title: seo.title,
+    description: seo.description,
     path: `/services/${service.slug}/${city.slug}`,
     keywords: `${service.title} ${city.name}, ${service.title} في ${city.name}, كلين هاوس ${city.name}`,
     ogImage: `${SITE_CONFIG.url}${service.heroImage}`,
@@ -58,27 +59,18 @@ export default function ServiceCityPage({ params }: { params: { slug: string; ci
   const intro = getCityServiceIntro(service, city);
   const longContent = getCityServiceLongContent(service, city);
   const faqs = getCityServiceFaqs(service, city);
+  const { description: metaDescription } = getServiceCityPageSeo(service, city);
   const Icon = ICON_MAP[service.icon];
-
-  const schema = buildJsonLd(
-    serviceSchema({
-      name: h1,
-      description: getCityServiceMetaDescription(service, city),
-      url: pageUrl,
-      areaServed: city.name,
-    }),
-    breadcrumbSchema([
-      { name: 'الرئيسية', url: SITE_CONFIG.url },
-      { name: 'الخدمات', url: `${SITE_CONFIG.url}/#services` },
-      { name: service.title, url: `${SITE_CONFIG.url}/services/${service.slug}` },
-      { name: `${service.title} في ${city.name}`, url: pageUrl },
-    ]),
-    faqSchema(faqs),
-  );
 
   return (
     <>
-      <JsonLd data={schema} />
+      <ServiceCityLocalBusinessSchema
+        service={service}
+        city={city}
+        pageUrl={pageUrl}
+        description={metaDescription}
+        faqs={faqs}
+      />
       <Navbar />
       <main>
         {/* Hero */}
