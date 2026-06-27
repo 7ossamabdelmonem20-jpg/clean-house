@@ -12,17 +12,36 @@ import Image from "next/image";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const isServicePage = pathname?.startsWith("/services");
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const updateScroll = () => setScrolled(window.scrollY > 20);
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    return () => window.removeEventListener("scroll", updateScroll);
   }, []);
+
+  // شفاف فقط عندما يكون الهيرو ظاهراً في الصفحة الرئيسية
+  useEffect(() => {
+    if (!isHomePage) {
+      setHeroVisible(false);
+      return;
+    }
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0, rootMargin: "-72px 0px 0px 0px" }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [isHomePage, pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -52,19 +71,21 @@ export default function Navbar() {
     router.push(href);
   };
 
-  const isTransparent = !isServicePage && !scrolled;
+  // شفاف على الهيرو فقط | solid أبيض في باقي الحالات
+  const isTransparent = isHomePage && heroVisible && !scrolled;
+  const isSolid = !isTransparent;
 
   return (
     <>
       <header
-        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-400 ${
-          isServicePage || scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100"
-            : "bg-transparent"
+        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+          isSolid
+            ? "bg-white shadow-md border-b border-slate-200/80"
+            : "bg-navy-900/40 backdrop-blur-sm"
         }`}
         role="banner"
       >
-        <div className={`transition-all duration-400 ${isServicePage || scrolled ? "py-3" : "py-4"}`}>
+        <div className={`transition-all duration-300 ${isSolid ? "py-3" : "py-4"}`}>
           <nav className="container-custom" aria-label="القائمة الرئيسية">
             <div className="flex items-center justify-between">
 
@@ -74,10 +95,10 @@ export default function Navbar() {
                   <Image src="/images/logo.png" alt="Clean House KSA" fill className="object-contain" priority />
                 </div>
                 <div>
-                  <span className={`font-black text-lg tracking-tight block ${isTransparent ? "text-white" : "text-slate-900"}`}>
+                  <span className={`font-black text-lg tracking-tight block ${isSolid ? "text-slate-900" : "text-white drop-shadow-sm"}`}>
                     كلين هاوس
                   </span>
-                  <span className={`block text-xs font-medium font-inter ${isTransparent ? "text-primary-200" : "text-teal-500"}`} lang="en">
+                  <span className={`block text-xs font-medium font-inter ${isSolid ? "text-teal-600" : "text-teal-200"}`} lang="en">
                     Clean House KSA
                   </span>
                 </div>
@@ -92,9 +113,9 @@ export default function Navbar() {
                         <button
                           onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
                           className={`flex items-center gap-1 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
-                            isTransparent
-                              ? "text-white/90 hover:text-white hover:bg-white/10"
-                              : "text-slate-700 hover:text-primary-600 hover:bg-primary-50"
+                            isSolid
+                              ? "text-slate-700 hover:text-primary-600 hover:bg-primary-50"
+                              : "text-white hover:text-white hover:bg-white/15"
                           }`}
                           aria-expanded={activeDropdown === link.label}
                         >
@@ -132,9 +153,9 @@ export default function Navbar() {
                       <button
                         onClick={() => handleNavClick(link.href)}
                         className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
-                          isTransparent
-                            ? "text-white/90 hover:text-white hover:bg-white/10"
-                            : "text-slate-700 hover:text-primary-600 hover:bg-primary-50"
+                          isSolid
+                            ? "text-slate-700 hover:text-primary-600 hover:bg-primary-50"
+                            : "text-white hover:text-white hover:bg-white/15"
                         }`}
                       >
                         {link.label}
@@ -149,9 +170,9 @@ export default function Navbar() {
                 <a
                   href={SITE_CONFIG.tel}
                   className={`flex items-center gap-2 font-bold py-2.5 px-5 rounded-xl transition-all duration-200 text-sm ${
-                    isTransparent
-                      ? "bg-white/15 border border-white/30 text-white hover:bg-white/25"
-                      : "bg-primary-500 text-white hover:bg-primary-600 shadow-sm"
+                    isSolid
+                      ? "bg-primary-500 text-white hover:bg-primary-600 shadow-sm"
+                      : "bg-white text-primary-600 hover:bg-primary-50 shadow-md"
                   }`}
                 >
                   <Phone size={15} /> اتصل الآن
@@ -161,7 +182,7 @@ export default function Navbar() {
               {/* Mobile menu button */}
               <button
                 className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${
-                  isTransparent ? "text-white hover:bg-white/10" : "text-slate-700 hover:bg-slate-100"
+                  isSolid ? "text-slate-700 hover:bg-slate-100" : "text-white hover:bg-white/15"
                 }`}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
