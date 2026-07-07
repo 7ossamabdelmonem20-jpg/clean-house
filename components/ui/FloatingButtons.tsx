@@ -15,8 +15,10 @@ export default function FloatingButtons() {
         href={SITE_CONFIG.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
+        id="whatsapp-trigger"
         aria-label="تواصل عبر واتساب"
-        className="inline-flex items-center justify-center w-13 h-13 w-[52px] h-[52px] rounded-2xl bg-accent-500 text-white shadow-glow-green transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-300"
+        data-gtm-click="floating-whatsapp"
+        className="inline-flex items-center justify-center w-13 h-13 w-[52px] h-[52px] rounded-2xl bg-accent-500 text-white shadow-glow-green transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-300 cta-whatsapp"
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 12 }}
@@ -29,8 +31,10 @@ export default function FloatingButtons() {
 
       <motion.a
         href={SITE_CONFIG.tel}
+        id="call-trigger"
         aria-label="اتصل بنا"
-        className="inline-flex items-center justify-center w-[52px] h-[52px] rounded-2xl bg-primary-500 text-white shadow-glow transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-300"
+        data-gtm-click="floating-call"
+        className="inline-flex items-center justify-center w-[52px] h-[52px] rounded-2xl bg-primary-500 text-white shadow-glow transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-300 cta-call"
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 12 }}

@@ -114,14 +114,18 @@ export default function HeroSection() {
             <a
               href={SITE_CONFIG.whatsapp}
               target="_blank" rel="noopener noreferrer"
-              className="btn-whatsapp text-base shadow-glow-green"
+              id="hero-whatsapp-trigger"
+              data-gtm-click="hero-whatsapp"
+              className="btn-whatsapp text-base shadow-glow-green cta-whatsapp"
             >
               <MessageCircle size={19} />
               اطلب الخدمة الآن
             </a>
             <a
               href={SITE_CONFIG.tel}
-              className="flex items-center gap-2 bg-white/15 border border-white/35 backdrop-blur-sm text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/25 transition-all duration-200 text-base"
+              id="hero-call-trigger"
+              data-gtm-click="hero-call"
+              className="flex items-center gap-2 bg-white/15 border border-white/35 backdrop-blur-sm text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/25 transition-all duration-200 text-base cta-call"
             >
               <Phone size={18} />
               {SITE_CONFIG.phoneFormatted}

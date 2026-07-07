@@ -150,7 +150,9 @@ export default function ContactSection() {
                   <a
                     href={SITE_CONFIG.whatsapp}
                     target="_blank" rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2.5 bg-accent-500 hover:bg-accent-600 text-white font-black py-3.5 rounded-xl transition-all duration-200 shadow-glow-green text-base"
+                    id="contact-whatsapp-trigger"
+                    data-gtm-click="contact-whatsapp"
+                    className="w-full flex items-center justify-center gap-2.5 bg-accent-500 hover:bg-accent-600 text-white font-black py-3.5 rounded-xl transition-all duration-200 shadow-glow-green text-base cta-whatsapp"
                     aria-label="تواصل عبر واتساب لطلب الخدمة"
                   >
                     <MessageCircle size={20} />
@@ -158,7 +160,9 @@ export default function ContactSection() {
                   </a>
                   <a
                     href={SITE_CONFIG.tel}
-                    className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/18 border border-white/20 text-white font-semibold py-3 rounded-xl transition-all duration-200 text-sm"
+                    id="contact-call-trigger"
+                    data-gtm-click="contact-call"
+                    className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/18 border border-white/20 text-white font-semibold py-3 rounded-xl transition-all duration-200 text-sm cta-call"
                     aria-label="اتصل بنا الآن"
                   >
                     <Phone size={17} />

@@ -44,15 +44,19 @@ export default function Footer() {
             <div className="flex gap-3">
               <a
                 href={SITE_CONFIG.whatsapp}
-                className="flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white py-2 px-4 rounded-xl text-xs font-semibold transition-colors"
+                className="flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white py-2 px-4 rounded-xl text-xs font-semibold transition-colors cta-whatsapp"
                 target="_blank" rel="noopener noreferrer"
+                id="footer-whatsapp-trigger"
+                data-gtm-click="footer-whatsapp"
                 aria-label="تواصل عبر واتساب"
               >
                 <MessageCircle size={14} /> واتساب
               </a>
               <a
                 href={SITE_CONFIG.tel}
-                className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-xl text-xs font-semibold transition-colors"
+                className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-xl text-xs font-semibold transition-colors cta-call"
+                id="footer-call-trigger"
+                data-gtm-click="footer-call"
                 aria-label="اتصل بنا"
               >
                 <Phone size={14} /> اتصل

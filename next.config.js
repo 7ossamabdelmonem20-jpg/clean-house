@@ -2,10 +2,16 @@
 const nextConfig = {
   poweredByHeader: false,
   compress: true,
+  // تحسين CSS للإنتاج
+  experimental: {
+    optimizeCss: true,
+  },
   images: {
+    // WebP/AVIF تلقائياً لجميع الصور
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    // أحجام مُحسَّنة للموبايل والديسكتوب
+    deviceSizes: [375, 640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
@@ -27,6 +33,7 @@ const nextConfig = {
         source: '/images/(.*)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'Vary', value: 'Accept' },
         ],
       },
     ];

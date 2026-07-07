@@ -2,13 +2,23 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { CheckCircle2, Phone, MessageCircle, ArrowRight, Star, ChevronLeft, ShieldCheck, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  CheckCircle2, Phone, MessageCircle, ArrowRight, Star,
+  ChevronLeft, ShieldCheck, MapPin, ChevronDown,
+} from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingButtons from '@/components/ui/FloatingButtons';
+import ServiceLeadForm from '@/components/sections/ServiceLeadForm';
 import { SITE_CONFIG, TESTIMONIALS } from '@/constants';
 import { ICON_MAP } from '@/utils/iconMap';
+
+interface ServiceFaq {
+  question: string;
+  answer: string;
+}
 
 interface Service {
   id: string;
@@ -20,6 +30,7 @@ interface Service {
   longDescription: string;
   features: string[];
   steps: { title: string; desc: string }[];
+  faq?: ServiceFaq[];
   image: string;
   heroImage: string;
   color: string;
@@ -37,6 +48,8 @@ export default function ServicePageClient({
   service: Service;
   otherServices: Service[];
 }) {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
   // نصفّي التقييمات الخاصة بهذه الخدمة إن وُجدت، وإلا نأخذ أول ٣
   const relatedTestimonials = TESTIMONIALS.filter((t) =>
     t.service.includes(service.title.split(' ')[1] ?? '')
@@ -49,8 +62,11 @@ export default function ServicePageClient({
       <Navbar />
       <main>
 
-        {/* ── Hero ── */}
-        <section className="relative min-h-[60vh] flex items-end overflow-hidden" aria-label={`خدمة ${service.title}`}>
+        {/* ── Hero + Lead Form (Above the Fold) ── */}
+        <section
+          className="relative min-h-[60vh] flex items-end overflow-hidden"
+          aria-label={`خدمة ${service.title}`}
+        >
           {/* صورة الخلفية */}
           <div className="absolute inset-0">
             <Image
@@ -74,32 +90,68 @@ export default function ServicePageClient({
               <span className="text-white">{service.title}</span>
             </nav>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              <span className={`inline-flex items-center gap-2 text-sm font-bold py-1.5 px-4 rounded-full mb-4 bg-white/15 backdrop-blur-sm border border-white/20 text-white`}>
-                {(() => { const HeroIcon = ICON_MAP[service.icon]; return HeroIcon ? <HeroIcon size={15} strokeWidth={1.75} /> : null; })()}
-                خدمة احترافية معتمدة
-              </span>
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Hero Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <span className="inline-flex items-center gap-2 text-sm font-bold py-1.5 px-4 rounded-full mb-4 bg-white/15 backdrop-blur-sm border border-white/20 text-white">
+                  {(() => { const HeroIcon = ICON_MAP[service.icon]; return HeroIcon ? <HeroIcon size={15} strokeWidth={1.75} /> : null; })()}
+                  خدمة احترافية معتمدة
+                </span>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-                {service.title}
-              </h1>
-              <p className="text-xl text-white/80 max-w-2xl mb-8">
-                {service.shortDesc}
-              </p>
+                <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+                  {service.title}
+                </h1>
+                <p className="text-lg text-white/80 max-w-xl mb-6">
+                  {service.shortDesc}
+                </p>
 
-              <div className="flex flex-wrap gap-4">
-                <a href={SITE_CONFIG.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
-                  <MessageCircle size={20} /> احجز الخدمة الآن
-                </a>
-                <a href={SITE_CONFIG.tel} className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/25 transition-all">
-                  <Phone size={18} /> {SITE_CONFIG.phoneFormatted}
-                </a>
-              </div>
-            </motion.div>
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href={SITE_CONFIG.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="service-whatsapp-trigger"
+                    data-gtm-click="service-whatsapp"
+                    data-service={service.slug}
+                    className="btn-whatsapp text-base cta-whatsapp"
+                  >
+                    <MessageCircle size={20} /> احجز الخدمة الآن
+                  </a>
+                  <a
+                    href={SITE_CONFIG.tel}
+                    id="service-call-trigger"
+                    data-gtm-click="service-call"
+                    data-service={service.slug}
+                    className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/25 transition-all cta-call"
+                  >
+                    <Phone size={18} /> {SITE_CONFIG.phoneFormatted}
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Lead Form — Above the Fold */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="bg-navy-700 rounded-3xl p-6 relative overflow-hidden border border-white/10"
+              >
+                <div className="absolute inset-0 pattern-bg opacity-10" />
+                <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 to-teal-400 rounded-t-3xl" />
+                <div className="relative">
+                  <h2 className="text-white font-black text-lg mb-0.5">احجز {service.title} الآن</h2>
+                  <p className="text-primary-200 text-sm mb-5">أرسل طلبك واحصل على عرض سعر مجاني فوراً</p>
+                  <ServiceLeadForm
+                    defaultService={service.title}
+                    serviceSlug={service.slug}
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -137,10 +189,22 @@ export default function ServicePageClient({
                 </ul>
 
                 <div className="flex flex-wrap gap-3">
-                  <a href={SITE_CONFIG.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+                  <a
+                    href={SITE_CONFIG.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="section-whatsapp-trigger"
+                    data-gtm-click="section-whatsapp"
+                    className="btn-whatsapp cta-whatsapp"
+                  >
                     <MessageCircle size={18} /> احجز الآن
                   </a>
-                  <a href={SITE_CONFIG.tel} className="btn-secondary">
+                  <a
+                    href={SITE_CONFIG.tel}
+                    id="section-call-trigger"
+                    data-gtm-click="section-call"
+                    className="btn-secondary cta-call"
+                  >
                     <Phone size={18} /> اتصل بنا
                   </a>
                 </div>
@@ -161,14 +225,15 @@ export default function ServicePageClient({
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
                   />
                 </div>
                 {/* بطاقة ضمان */}
                 <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-card-hover p-4 border border-slate-100">
                   <div className="flex items-center gap-3">
                     <div className="w-11 h-11 bg-teal-50 rounded-xl flex items-center justify-center">
-                  <ShieldCheck size={22} className="text-teal-500" strokeWidth={1.75} />
-                </div>
+                      <ShieldCheck size={22} className="text-teal-500" strokeWidth={1.75} />
+                    </div>
                     <div>
                       <p className="font-black text-slate-900 text-sm">ضمان الخدمة</p>
                       <p className="text-slate-400 text-xs">نعيد الخدمة مجاناً</p>
@@ -259,6 +324,68 @@ export default function ServicePageClient({
           </div>
         </section>
 
+        {/* ── FAQ خاص بالخدمة ── */}
+        {service.faq && service.faq.length > 0 && (
+          <section className={`section-padding ${service.bgColor}`} aria-label={`الأسئلة الشائعة حول ${service.title}`}>
+            <div className="container-custom">
+              <div className="text-center mb-10">
+                <span className={`inline-block text-sm font-bold py-1.5 px-4 rounded-full mb-4 bg-white ${service.textColor}`}>
+                  الأسئلة الشائعة
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900">
+                  كل ما تريد معرفته عن {service.title}
+                </h2>
+              </div>
+
+              <div className="max-w-3xl mx-auto space-y-3">
+                {service.faq.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    className={`bg-white rounded-2xl overflow-hidden border transition-all duration-200 ${
+                      openFaq === i ? `${service.borderColor} shadow-sm` : 'border-slate-100 hover:border-slate-200'
+                    }`}
+                  >
+                    <button
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      className="w-full flex items-center justify-between p-5 text-right font-bold text-slate-900 hover:text-primary-600 transition-colors"
+                      aria-expanded={openFaq === i}
+                      aria-controls={`service-faq-answer-${i}`}
+                    >
+                      <span className="text-sm leading-relaxed">{item.question}</span>
+                      <ChevronDown
+                        size={18}
+                        className={`flex-shrink-0 ml-4 transition-transform duration-300 ${
+                          openFaq === i ? `rotate-180 ${service.textColor}` : 'text-slate-400'
+                        }`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {openFaq === i && (
+                        <motion.div
+                          id={`service-faq-answer-${i}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.22 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                            {item.answer}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* ── CTA Banner ── */}
         <section className="py-16 bg-navy-700 relative overflow-hidden">
           <div className="absolute inset-0 pattern-bg opacity-15" />
@@ -271,10 +398,22 @@ export default function ServicePageClient({
               تواصل معنا واحصل على عرض سعر مجاني فوري
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <a href={SITE_CONFIG.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+              <a
+                href={SITE_CONFIG.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="cta-whatsapp-trigger"
+                data-gtm-click="cta-whatsapp"
+                className="btn-whatsapp cta-whatsapp"
+              >
                 <MessageCircle size={19} /> تواصل عبر واتساب
               </a>
-              <a href={SITE_CONFIG.tel} className="flex items-center gap-2 bg-white text-navy-700 font-bold py-3 px-7 rounded-xl hover:bg-slate-50 transition-colors">
+              <a
+                href={SITE_CONFIG.tel}
+                id="cta-call-trigger"
+                data-gtm-click="cta-call"
+                className="flex items-center gap-2 bg-white text-navy-700 font-bold py-3 px-7 rounded-xl hover:bg-slate-50 transition-colors cta-call"
+              >
                 <Phone size={17} /> اتصل الآن
               </a>
             </div>
@@ -295,29 +434,31 @@ export default function ServicePageClient({
               {otherServices.slice(0, 3).map((s, i) => {
                 const OtherIcon = ICON_MAP[s.icon];
                 return (
-                <motion.div
-                  key={s.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                >
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="bg-white rounded-2xl p-6 block group shadow-card hover:shadow-card-hover border border-slate-100 hover:border-primary-100 transition-all duration-300 hover:-translate-y-1"
+                  <motion.div
+                    key={s.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
                   >
-                    <div className={`w-12 h-12 ${s.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform border ${s.borderColor}`}>
-                      {OtherIcon && <OtherIcon size={22} className={s.textColor} strokeWidth={1.75} />}
-                    </div>
-                    <h3 className="font-black text-slate-900 text-base mb-1.5 group-hover:text-primary-600 transition-colors">
-                      {s.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm mb-4 leading-relaxed">{s.shortDesc}</p>
-                    <span className={`inline-flex items-center gap-1 text-xs font-bold ${s.textColor}`}>
-                      اعرف المزيد <ArrowRight size={12} />
-                    </span>
-                  </Link>
-                </motion.div>
+                    <Link
+                      href={`/services/${s.slug}`}
+                      data-gtm-click="other-service"
+                      data-service={s.slug}
+                      className="bg-white rounded-2xl p-6 block group shadow-card hover:shadow-card-hover border border-slate-100 hover:border-primary-100 transition-all duration-300 hover:-translate-y-1"
+                    >
+                      <div className={`w-12 h-12 ${s.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform border ${s.borderColor}`}>
+                        {OtherIcon && <OtherIcon size={22} className={s.textColor} strokeWidth={1.75} />}
+                      </div>
+                      <h3 className="font-black text-slate-900 text-base mb-1.5 group-hover:text-primary-600 transition-colors">
+                        {s.title}
+                      </h3>
+                      <p className="text-slate-500 text-sm mb-4 leading-relaxed">{s.shortDesc}</p>
+                      <span className={`inline-flex items-center gap-1 text-xs font-bold ${s.textColor}`}>
+                        اعرف المزيد <ArrowRight size={12} />
+                      </span>
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
