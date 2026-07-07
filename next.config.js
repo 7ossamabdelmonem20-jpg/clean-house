@@ -4,7 +4,7 @@ const nextConfig = {
   compress: true,
   // تحسين CSS للإنتاج
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true,
   },
   images: {
     // WebP/AVIF تلقائياً لجميع الصور
