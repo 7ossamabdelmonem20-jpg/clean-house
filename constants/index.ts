@@ -22,6 +22,13 @@ export const SITE_CONFIG = {
   established: '2015',
 };
 
+export const DEVELOPMENT_PARTNER = {
+  name: 'نظّم',
+  url: 'https://nazzemsoft.com/ar',
+  attribution: 'صُمّم موقع الشركة بواسطة شركة نظّم',
+  description: 'شركة متخصصة في برمجة وتشغيل أنظمة إدارة الأعمال',
+};
+
 export const NAV_LINKS = [
   { label: 'الرئيسية', href: '/' },
   { label: 'من نحن', href: '/#about' },
