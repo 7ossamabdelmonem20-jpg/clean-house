@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
-import { NAV_LINKS, SITE_CONFIG } from "@/constants";
+import { Menu, X, ChevronDown, Phone, Code2, ExternalLink } from "lucide-react";
+import { DEVELOPMENT_PARTNER, NAV_LINKS, SITE_CONFIG } from "@/constants";
 import { ICON_MAP } from "@/utils/iconMap";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -37,7 +37,7 @@ export default function Navbar() {
 
     const observer = new IntersectionObserver(
       ([entry]) => setHeroVisible(entry.isIntersecting),
-      { threshold: 0, rootMargin: "-72px 0px 0px 0px" }
+      { threshold: 0, rootMargin: "-104px 0px 0px 0px" }
     );
     observer.observe(hero);
     return () => observer.disconnect();
@@ -192,6 +192,48 @@ export default function Navbar() {
               </button>
             </div>
           </nav>
+        </div>
+
+        {/* Development partner */}
+        <div
+          className={`border-t transition-colors duration-300 ${
+            isSolid
+              ? "border-slate-200/80 bg-gradient-to-l from-primary-50 via-white to-teal-50"
+              : "border-white/15 bg-navy-900/35"
+          }`}
+        >
+          <div className="container-custom flex min-h-9 items-center justify-center gap-2 py-1.5 text-[11px] sm:text-xs">
+            <Code2
+              size={14}
+              strokeWidth={2}
+              className={`flex-shrink-0 ${isSolid ? "text-teal-600" : "text-teal-300"}`}
+              aria-hidden="true"
+            />
+            <p className={`font-semibold ${isSolid ? "text-slate-600" : "text-white/90"}`}>
+              <span className="sm:hidden">{DEVELOPMENT_PARTNER.attribution}</span>
+              <span className="hidden sm:inline">
+                {DEVELOPMENT_PARTNER.attribution}، {DEVELOPMENT_PARTNER.description}
+              </span>
+            </p>
+            <a
+              href={DEVELOPMENT_PARTNER.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group inline-flex flex-shrink-0 items-center gap-1 rounded-lg border px-2.5 py-1 font-bold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 ${
+                isSolid
+                  ? "border-teal-200 bg-white text-teal-700 shadow-sm hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
+                  : "border-white/25 bg-white/10 text-white hover:-translate-y-0.5 hover:bg-white/20"
+              }`}
+              aria-label={`زيارة موقع شركة ${DEVELOPMENT_PARTNER.name} (يفتح في نافذة جديدة)`}
+            >
+              <span>زيارة نظّم</span>
+              <ExternalLink
+                size={11}
+                className="transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
         </div>
       </header>
 

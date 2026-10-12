@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
-import { SITE_CONFIG, SERVICES } from '@/constants';
+import { Phone, Mail, MapPin, Clock, MessageCircle, Code2, ExternalLink } from 'lucide-react';
+import { DEVELOPMENT_PARTNER, SITE_CONFIG, SERVICES } from '@/constants';
 import { SEO_CITIES } from '@/constants/cities';
 import { ICON_MAP } from '@/utils/iconMap';
 
@@ -148,6 +148,37 @@ export default function Footer() {
                 </div>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Development partner */}
+        <div className="mb-6 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-l from-primary-500/10 via-white/[0.04] to-teal-500/10 p-1">
+          <div className="flex flex-col items-center justify-between gap-4 rounded-xl bg-navy-800/70 px-5 py-4 text-center sm:flex-row sm:text-right">
+            <div className="flex flex-col items-center gap-3 sm:flex-row">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-teal-400/20 bg-teal-400/10 text-teal-300 shadow-glow-teal">
+                <Code2 size={22} strokeWidth={1.8} aria-hidden="true" />
+              </div>
+              <div>
+                <p className="font-bold text-white">{DEVELOPMENT_PARTNER.attribution}</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-400 sm:text-sm">
+                  {DEVELOPMENT_PARTNER.description}
+                </p>
+              </div>
+            </div>
+            <a
+              href={DEVELOPMENT_PARTNER.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex w-full flex-shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-teal-500 to-primary-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-teal-950/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow-teal focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 sm:w-auto"
+              aria-label={`زيارة موقع شركة ${DEVELOPMENT_PARTNER.name} (يفتح في نافذة جديدة)`}
+            >
+              <span>تعرّف على نظّم</span>
+              <ExternalLink
+                size={15}
+                className="transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </a>
           </div>
         </div>
 
